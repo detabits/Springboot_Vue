@@ -21,6 +21,7 @@ public class User {
     private String phone;
     private String address;
 
+   // private String avatarUrl;  //头像
 
 
 }
