@@ -1,14 +1,11 @@
 <template>
-<div>
-  <h1>这是主页</h1>
-</div>
+
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "login"
 }
-
 </script>
 
 <style scoped>
