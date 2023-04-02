@@ -1,18 +1,23 @@
 package com.qingge.springboot.controller;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qingge.springboot.common.Constants;
+import com.qingge.springboot.common.Result;
+import com.qingge.springboot.controller.dto.UserDTO;
 import com.qingge.springboot.entity.User;
 import com.qingge.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
@@ -22,6 +27,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+
+    @PostMapping("/login")
+    public Result login(@RequestBody UserDTO userDTO) {
+        String username = userDTO.getUsername();
+        String password = userDTO.getPassword();
+        if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
+            return Result.error(Constants.CODE_400,"参数错误");
+        }
+        UserDTO dto = userService.login(userDTO);
+        return Result.success(dto);
+
+    }
 
     @Autowired
     private UserService userService;
@@ -109,7 +127,7 @@ public class UserController {
         writer.addHeaderAlias("phone", "电话");
         writer.addHeaderAlias("address", "地址");
         writer.addHeaderAlias("createTime", "创建时间");
-        writer.addHeaderAlias("avatarUrl", "头像");
+        writer.addHeaderAlias("avatar", "头像");
 
         // 一次性写出list内的对象到excel，使用默认样式，强制输出标题
         writer.write(list, true);
@@ -149,7 +167,7 @@ public class UserController {
             user.setEmail(row.get(3).toString());
             user.setPhone(row.get(4).toString());
             user.setAddress(row.get(5).toString());
-           // user.setAvatarUrl(row.get(6).toString()); //头像
+            user.setAvatar(row.get(6).toString()); //头像
             users.add(user);
         }
 

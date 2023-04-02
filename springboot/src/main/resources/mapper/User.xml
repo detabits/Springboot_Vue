@@ -24,6 +24,9 @@
             <if test="address != null">
                 address = #{address}
             </if>
+            <if test="avatar != null">
+                address = #{avatar}
+            </if>
         </set>
         <where>
             id = #{id}
