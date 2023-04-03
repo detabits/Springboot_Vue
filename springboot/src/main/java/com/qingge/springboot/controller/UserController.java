@@ -57,6 +57,15 @@ public class UserController {
         return userService.list();
     }
 
+    //个人信息根据用户名查询
+    @GetMapping("/username/{username}")
+    public Result findOne(@PathVariable String username){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username",username);
+        return Result.success(userService.getOne(queryWrapper));
+    }
+
+
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable Integer id) {
         return userService.removeById(id);
