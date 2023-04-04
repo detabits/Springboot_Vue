@@ -9,6 +9,7 @@ import com.qingge.springboot.controller.dto.UserDTO;
 import com.qingge.springboot.entity.User;
 import com.qingge.springboot.exception.ServiceException;
 import com.qingge.springboot.mapper.UserMapper;
+import com.qingge.springboot.utils.TokenUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +26,9 @@ public class UserService extends ServiceImpl<UserMapper,User>{
         User one = getUserInfo(userDTO);
         if (one != null) {
             BeanUtil.copyProperties(one, userDTO, true);
+            //设置token
+            String token = TokenUtils.genToken(one.getId().toString(),one.getPassword());
+            userDTO.setToken(token);
             return userDTO;
         } else {
             throw new ServiceException(Constants.CODE_600, "用户名或密码错误");
