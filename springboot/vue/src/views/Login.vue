@@ -36,13 +36,16 @@ export default {
           { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur' }
         ],
+
       }
     }
   },
   methods: {
     login() {
+
       this.$refs['userForm'].validate((valid) => {
         if (valid) {  // 表单校验合法
+
           this.request.post("/user/login", this.user).then(res => {
             if(res.code === '200') {
               localStorage.setItem("user", JSON.stringify(res.data))  // 存储用户信息到浏览器

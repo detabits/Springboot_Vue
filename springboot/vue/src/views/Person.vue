@@ -44,17 +44,16 @@ export default {
   },
   created() {
     this.getUser().then(res => {
-      console.log(res)
       this.form = res
     })
   },
   methods: {
     async getUser() {
-      return (await this.request.get("/user/username/" + this.user.username)).data
+       return (await this.request.get("/user/username/" + this.user.username)).data
     },
     save() {
-      this.request.post("/user", this.form).then(res => {
-        if (res.code === '200') {
+       this.request.post("/user", this.form).then(res => {
+        if (res==="200") {
           this.$message.success("保存成功")
 
           // 更新浏览器存储的用户信息
