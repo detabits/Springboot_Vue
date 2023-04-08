@@ -11,8 +11,10 @@
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
 
+
+
       <el-form-item label="用户名">
-        <el-input v-model="form.username" autocomplete="off"></el-input>
+        <el-input v-model="form.username"  disabled autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="昵称">
         <el-input v-model="form.nickname" autocomplete="off"></el-input>
@@ -24,7 +26,7 @@
         <el-input v-model="form.phone" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="地址">
-        <el-input v-model="form.address" autocomplete="off"></el-input>
+        <el-input  type="textarea" v-model="form.address" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="save">确 定</el-button>
@@ -53,8 +55,11 @@ export default {
     },
     save() {
        this.request.post("/user", this.form).then(res => {
-        if (res==="200") {
+        if (res===true) {
           this.$message.success("保存成功")
+
+          //触发父级更新User的方法
+          this.$emit("refreshUser")
 
           // 更新浏览器存储的用户信息
           this.getUser().then(res => {
@@ -63,7 +68,7 @@ export default {
           })
 
         } else {
-          this.$message.error("保存失败");
+          this.$message.error("保存失败")
         }
       })
     },

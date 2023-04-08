@@ -11,6 +11,8 @@
     </div>
 
 
+
+
     <el-dropdown style="width: 100px; cursor: pointer">
       <div style="display: inline-block">
         <img :src="user.avatar" alt=""  referrerpolicy="no-referrer"
@@ -35,6 +37,7 @@ export default {
   props: {
     collapseBtnClass: String,
     collapse: Boolean,
+    user: Object
   },
   computed: {
     currentPathName () {
@@ -48,7 +51,7 @@ export default {
   },
   data() {
     return {
-      user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
+
     }
   },
   methods: {
