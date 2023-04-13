@@ -9,7 +9,7 @@
     </div>
 
     <div style="margin: 10px 0">
-      <el-button type="primary" @click="handleAdd">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
+      <el-button type="primary" @click="handleAdd('')">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
       <el-popconfirm
           class="ml-5"
           confirm-button-text='确定'
@@ -27,15 +27,17 @@
       <!--      <el-button type="primary" @click="exp" class="ml-5">导出 <i class="el-icon-top"></i></el-button>-->
     </div>
 
-    <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'"  @selection-change="handleSelectionChange">
+    <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'"
+              row-key="id" default-expand-all @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="id" label="ID" width="80"></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
-      <el-table-column prop="flag" label="唯一标识"></el-table-column>
+      <el-table-column prop="path" label="路径"></el-table-column>
+      <el-table-column prop="icon" label="图标"></el-table-column>
       <el-table-column prop="description" label="描述"></el-table-column>
-      <el-table-column label="操作"  width="280" align="center">
+      <el-table-column label="操作"  width="300" align="center">
         <template slot-scope="scope">
-          <el-button type="info" @click="selectMenu(scope.row)">分配菜单 <i class="el-icon-menu"></i></el-button>
+          <el-button type="primary" @click="handleAdd(scope.row.id)" v-if="!scope.row.pid&&!scope.row.path">新增子菜单 <i class="el-icon-plus"></i></el-button>
           <el-button type="success" @click="handleEdit(scope.row)">编辑 <i class="el-icon-edit"></i></el-button>
           <el-popconfirm
               class="ml-5"
@@ -51,25 +53,18 @@
         </template>
       </el-table-column>
     </el-table>
-    <div style="padding: 10px 0">
-      <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="pageNum"
-          :page-sizes="[2, 5, 10, 20]"
-          :page-size="pageSize"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total">
-      </el-pagination>
-    </div>
 
-    <el-dialog title="角色信息" :visible.sync="dialogFormVisible" width="30%" >
+
+    <el-dialog title="菜单信息" :visible.sync="dialogFormVisible" width="30%" >
       <el-form label-width="80px" size="small">
         <el-form-item label="名称">
           <el-input v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="唯一标识">
-          <el-input v-model="form.flag" autocomplete="off"></el-input>
+        <el-form-item label="路径">
+          <el-input v-model="form.path" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="图标">
+          <el-input v-model="form.icon" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="描述">
           <el-input v-model="form.description" autocomplete="off"></el-input>
@@ -132,27 +127,21 @@ export default {
   },
   methods: {
     load() {
-      this.request.get("/role/page", {
+      this.request.get("/menu", {
         params: {
-          pageNum: this.pageNum,
-          pageSize: this.pageSize,
           name: this.name,
         }
       }).then(res => {
-        this.tableData = res.data.records
-        this.total = res.data.total
+        this.tableData = res.data
       })
 
       this.request.get("/menu/ids").then(r => {
         this.ids = r.data
       })
 
-
-
-
     },
     save() {
-      this.request.post("/role", this.form).then(res => {
+      this.request.post("/menu", this.form).then(res => {
         if (res.code === '200') {
           this.$message.success("保存成功")
           this.dialogFormVisible = false
@@ -163,7 +152,7 @@ export default {
       })
     },
     saveRoleMenu() {
-      this.request.post("/role/roleMenu/" + this.roleId, this.$refs.tree.getCheckedKeys()).then(res => {
+      this.request.post("/menu/roleMenu/" + this.roleId, this.$refs.tree.getCheckedKeys()).then(res => {
         if (res.code === '200') {
           this.$message.success("绑定成功")
           this.menuDialogVis = false
@@ -178,16 +167,20 @@ export default {
         }
       })
     },
-    handleAdd() {
+    handleAdd(pid) {
       this.dialogFormVisible = true
       this.form = {}
+      if(pid)
+      {
+        this.form.pid = pid;
+      }
     },
     handleEdit(row) {
       this.form = JSON.parse(JSON.stringify(row))
       this.dialogFormVisible = true
     },
     del(id) {
-      this.request.delete("/role/" + id).then(res => {
+      this.request.delete("/menu/" + id).then(res => {
         if (res.code === '200') {
           this.$message.success("删除成功")
           this.load()
@@ -202,7 +195,7 @@ export default {
     },
     delBatch() {
       let ids = this.multipleSelection.map(v => v.id)  // [{}, {}, {}] => [1,2,3]
-      this.request.post("/role/del/batch", ids).then(res => {
+      this.request.post("/menu/del/batch", ids).then(res => {
         if (res.code === '200') {
           this.$message.success("批量删除成功")
           this.load()
@@ -226,25 +219,8 @@ export default {
       this.load()
     },
     async selectMenu(role) {
-
-
-
-      this.request.get("/menu", {
-        params: {
-          name: "",
-        }
-      }).then(res=>{
-        this.menuData = res.data
-      })
-
-
-
-
-      
-      this.menuDialogVis = true
       this.roleId = role.id
       this.roleFlag = role.flag
-
 
       // 请求菜单数据
       this.request.get("/menu").then(res => {
@@ -255,24 +231,10 @@ export default {
       })
 
 
-      this.request.get("/role/roleMenu/" + this.roleId).then(res => {
-        this.checks = res.data
-
-        // this.ids.forEach(id => {
-        //
-        //   if (!this.checks.includes(id)) {
-        //     // 可能会报错：Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'setChecked')
-        //     this.$nextTick(() => {
-        //       this.$refs.tree.setChecked(id, false)
-        //     })
-        //   }
-        // })
-
-
-      })
-    },
   }
 }
+}
+
 </script>
 
 
