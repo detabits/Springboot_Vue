@@ -3,6 +3,9 @@ package com.qingge.springboot.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qingge.springboot.common.Constants;
+import com.qingge.springboot.entity.Dict;
+import com.qingge.springboot.mapper.DictMapper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,6 +35,8 @@ public class MenuController {
     @Resource
     private IMenuService menuService;
 
+    @Resource
+    private DictMapper dictMapper;
 
     // 新增或者更新
     @PostMapping
@@ -98,9 +103,17 @@ public class MenuController {
             // 筛选所有数据中pid=父级id的数据就是二级菜单
             menu.setChildren(list.stream().filter(m -> menu.getId().equals(m.getPid())).collect(Collectors.toList()));
         }
+
         return Result.success(parentNodes);
     }
 
+
+    @GetMapping("/icons")
+    public Result getIcons() {
+        QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("type", Constants.DICT_TYPE_ICON);
+        return Result.success(dictMapper.selectList(queryWrapper));
+    }
 
 }
 

@@ -164,9 +164,10 @@ export default {
     },
     saveRoleMenu() {
       this.request.post("/role/roleMenu/" + this.roleId, this.$refs.tree.getCheckedKeys()).then(res => {
+
         if (res.code === '200') {
           this.$message.success("绑定成功")
-          this.menuDialogVis = false
+          this.menuDialogVis = false     //关闭
 
           // 操作管理员角色后需要重新登录
           if (this.roleFlag === 'ROLE_ADMIN') {
@@ -235,12 +236,15 @@ export default {
         }
       }).then(res=>{
         this.menuData = res.data
+
+        // 把后台返回的菜单数据处理成 id数组
+        this.expends = this.menuData.map(v => v.id)
       })
 
 
 
 
-      
+
       this.menuDialogVis = true
       this.roleId = role.id
       this.roleFlag = role.flag
@@ -252,6 +256,7 @@ export default {
 
         // 把后台返回的菜单数据处理成 id数组
         this.expends = this.menuData.map(v => v.id)
+
       })
 
 
