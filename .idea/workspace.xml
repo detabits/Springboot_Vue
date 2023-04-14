@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +73,7 @@
       <workItem from="1681283300112" duration="162000" />
       <workItem from="1681283804592" duration="41623000" />
       <workItem from="1681388441784" duration="2008000" />
-      <workItem from="1681435787757" duration="8075000" />
+      <workItem from="1681435787757" duration="8385000" />
     </task>
     <servers />
   </component>

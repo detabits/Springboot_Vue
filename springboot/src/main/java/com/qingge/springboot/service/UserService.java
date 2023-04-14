@@ -9,12 +9,14 @@ import com.qingge.springboot.controller.dto.UserDTO;
 import com.qingge.springboot.entity.User;
 import com.qingge.springboot.exception.ServiceException;
 import com.qingge.springboot.mapper.RoleMapper;
+import com.qingge.springboot.mapper.RoleMenuMapper;
 import com.qingge.springboot.mapper.UserMapper;
 import com.qingge.springboot.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserService extends ServiceImpl<UserMapper,User>{
@@ -29,6 +31,9 @@ public class UserService extends ServiceImpl<UserMapper,User>{
     @Resource
     private RoleMapper roleMapper;
 
+    @Resource
+    private RoleMenuMapper roleMenuMapper;
+
     public UserDTO login(UserDTO userDTO) {
         User one = getUserInfo(userDTO);
         if (one != null) {
@@ -38,7 +43,8 @@ public class UserService extends ServiceImpl<UserMapper,User>{
             userDTO.setToken(token);
 
             String role = one.getRole(); //ROLE_ADMIN
-            roleMapper.selectByFlag(role);
+            Integer roleId = roleMapper.selectByFlag(role);
+            List<Integer> menuIds = roleMenuMapper.selectByRoleId(roleId);
 
 
             return userDTO;
