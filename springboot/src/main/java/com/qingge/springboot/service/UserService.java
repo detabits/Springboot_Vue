@@ -8,9 +8,13 @@ import com.qingge.springboot.common.Constants;
 import com.qingge.springboot.controller.dto.UserDTO;
 import com.qingge.springboot.entity.User;
 import com.qingge.springboot.exception.ServiceException;
+import com.qingge.springboot.mapper.RoleMapper;
 import com.qingge.springboot.mapper.UserMapper;
 import com.qingge.springboot.utils.TokenUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 @Service
 public class UserService extends ServiceImpl<UserMapper,User>{
@@ -22,6 +26,9 @@ public class UserService extends ServiceImpl<UserMapper,User>{
 
     private static final Log LOG = Log.get();
 
+    @Resource
+    private RoleMapper roleMapper;
+
     public UserDTO login(UserDTO userDTO) {
         User one = getUserInfo(userDTO);
         if (one != null) {
@@ -29,6 +36,11 @@ public class UserService extends ServiceImpl<UserMapper,User>{
             //设置token
             String token = TokenUtils.genToken(one.getId().toString(),one.getPassword());
             userDTO.setToken(token);
+
+            String role = one.getRole(); //ROLE_ADMIN
+            roleMapper.selectByFlag(role);
+
+
             return userDTO;
         } else {
             throw new ServiceException(Constants.CODE_600, "用户名或密码错误");
