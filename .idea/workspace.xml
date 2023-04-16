@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/404.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/404.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/components/Aside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/components/Aside.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Manage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Role.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Role.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,11 +22,15 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="2OJeoA2DLUxwKbfV2EZFXwy9oWo" />
   <component name="ProjectViewState">
@@ -46,7 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/vue/src/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/vue/src/assets" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -56,6 +56,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\assets" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\views" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\java\com\qingge\springboot\mapper" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\java\com\qingge\springboot\entity" />
@@ -85,7 +86,9 @@
       <workItem from="1681435787757" duration="13901000" />
       <workItem from="1681550841302" duration="604000" />
       <workItem from="1681609187901" duration="3483000" />
-      <workItem from="1681612789259" duration="13187000" />
+      <workItem from="1681612789259" duration="19128000" />
+      <workItem from="1681644373190" duration="3253000" />
+      <workItem from="1681650341174" duration="1785000" />
     </task>
     <servers />
   </component>
