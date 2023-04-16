@@ -68,10 +68,10 @@ public class MenuController {
 //    }
 
 
-//    @GetMapping
-//    public Result findAll(@RequestParam(defaultValue = "") String name) {
-//        return Result.success(menuService.findMenus(name));
-//    }
+  // @GetMapping
+  //  public Result findAll(@RequestParam(defaultValue = "") String name) {
+  //      return Result.success(menuService.findMenus(name));
+  //  }
 
     @GetMapping("/{id}")
     public Result findOne(@PathVariable Integer id) {
@@ -104,6 +104,7 @@ public class MenuController {
             menu.setChildren(list.stream().filter(m -> menu.getId().equals(m.getPid())).collect(Collectors.toList()));
         }
 
+        menuService.findMenus(name);
         return Result.success(parentNodes);
     }
 

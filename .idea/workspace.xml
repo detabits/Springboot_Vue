@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/dto/UserDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/components/Aside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/components/Aside.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Manage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Role.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Role.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +82,10 @@
       <workItem from="1681283300112" duration="162000" />
       <workItem from="1681283804592" duration="41623000" />
       <workItem from="1681388441784" duration="2008000" />
-      <workItem from="1681435787757" duration="8385000" />
+      <workItem from="1681435787757" duration="13901000" />
+      <workItem from="1681550841302" duration="604000" />
+      <workItem from="1681609187901" duration="3483000" />
+      <workItem from="1681612789259" duration="13187000" />
     </task>
     <servers />
   </component>
