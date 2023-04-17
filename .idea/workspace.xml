@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/404.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/404.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Role.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Role.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,8 @@
       <workItem from="1681609187901" duration="3483000" />
       <workItem from="1681612789259" duration="19128000" />
       <workItem from="1681644373190" duration="3253000" />
-      <workItem from="1681650341174" duration="1785000" />
+      <workItem from="1681650341174" duration="2089000" />
+      <workItem from="1681694437465" duration="4203000" />
     </task>
     <servers />
   </component>

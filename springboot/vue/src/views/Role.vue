@@ -90,7 +90,7 @@
           ref="tree"
           :default-expanded-keys="expends"
           :default-checked-keys="checks"
-          check-strictly="true">
+         >
          <span class="custom-tree-node" slot-scope="{ node, data }">
             <span><i :class="data.icon"></i> {{ data.name }}</span>
          </span>
@@ -262,18 +262,28 @@ export default {
 
 
       this.request.get("/role/roleMenu/" + this.roleId).then(res => {
+        this.menuDialogVis = true
         this.checks = res.data
 
-        // this.ids.forEach(id => {
-        //
-        //   if (!this.checks.includes(id)) {
-        //     // 可能会报错：Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'setChecked')
-        //     this.$nextTick(() => {
-        //       this.$refs.tree.setChecked(id, false)
-        //     })
-        //   }
-        // })
+           // this.ids.forEach(id => {
+           //
+           //   if (!this.checks.includes(id)) {
+           //     // 可能会报错：Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'setChecked')
+           //    this.$nextTick(() => {
+           //       this.$refs.tree.setChecked(id, false)
+           //     })
+           //   }
+           // })
 
+        this.request.get("/menu/ids").then(r=>{
+
+          const ids = r.data
+          ids.forEach(id=>{
+            if (!this.checks.includes(id)) {
+              this.$refs.tree.setChecked(id, false)
+            }
+          })
+        })
 
       })
     },
