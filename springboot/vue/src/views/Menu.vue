@@ -78,6 +78,7 @@
             </el-option>
           </el-select>
         </el-form-item>
+
         <el-form-item label="描述">
           <el-input v-model="form.description" autocomplete="off"></el-input>
         </el-form-item>

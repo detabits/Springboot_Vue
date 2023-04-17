@@ -34,27 +34,39 @@ const router = new VueRouter({
   routes
 })
 
+// 提供一个重置路由的方法
+export const resetRouter = () => {
+  router.matcher = new VueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
+  })
+}
+
 
 export const setRoutes = () => {
   const storeMenus = localStorage.getItem("menus");
   if(storeMenus) {
-    //拼装动态路由
-    const manageRoute = {path: '/',name:'Manage', component: () => import('../views/Manage.vue'), redirect: "/home", children: [
-        { path: 'person', name: '个人信息', component: () => import('../views/Person.vue')},
-        //{ path: 'password', name: '修改密码', component: () => import('../views/Password.vue')}
-      ]}
-    const menus = JSON.parse(storeMenus)
-    menus.forEach(item => {
 
-      if(item.path) {
-        let itemMenu = {
-          path: item.path.replace("/", ""),
-          name: item.name,
-          component: () => import('../views/' + item.pagePath + '.vue')
+    const currentRouteNames = router.getRoutes().map(v=>v.name)
+    if(!currentRouteNames.includes('Manage')){
+      //拼装动态路由
+      const manageRoute = {path: '/',name:'Manage', component: () => import('../views/Manage.vue'), redirect: "/home", children: [
+          { path: 'person', name: '个人信息', component: () => import('../views/Person.vue')},
+          //{ path: 'password', name: '修改密码', component: () => import('../views/Password.vue')}
+        ]}
+      const menus = JSON.parse(storeMenus)
+      menus.forEach(item => {
+
+        if(item.path) {
+          let itemMenu = {
+            path: item.path.replace("/", ""),
+            name: item.name,
+            component: () => import('../views/' + item.pagePath + '.vue')
+          }
+          manageRoute.children.push(itemMenu)
         }
-        manageRoute.children.push(itemMenu)
-      }
-      else if(item.children.length){
+        else if(item.children.length){
 
           item.children.forEach(item => {
             if(item.path) {
@@ -66,10 +78,8 @@ export const setRoutes = () => {
               manageRoute.children.push(itemMenu)
             }
           })
-      }
-    })
-    const currentRouteNames = router.getRoutes().map(v=>v.name)
-    if(!currentRouteNames.includes('Manage')){
+        }
+      })
       //动态添加到现在的路由对象中去
       router.addRoute(manageRoute)
     }
