@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/News.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,8 @@
       <workItem from="1681644373190" duration="3253000" />
       <workItem from="1681650341174" duration="2089000" />
       <workItem from="1681694437465" duration="6767000" />
-      <workItem from="1681701899829" duration="318000" />
+      <workItem from="1681701899829" duration="2307000" />
+      <workItem from="1681975693634" duration="1189000" />
     </task>
     <task id="LOCAL-00001" summary="?">
       <created>1681699265102</created>
