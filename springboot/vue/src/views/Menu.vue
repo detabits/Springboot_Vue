@@ -9,7 +9,7 @@
     </div>
 
     <div style="margin: 10px 0">
-      <el-button type="primary" @click="handleAdd('')">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
+      <el-button type="primary" @click="handleAdd(null)">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
       <el-popconfirm
           class="ml-5"
           confirm-button-text='确定'
@@ -40,9 +40,10 @@
         </template>
       </el-table-column>
       <el-table-column prop="description" label="描述"></el-table-column>
+      <el-table-column prop="sortNum" label="顺序"></el-table-column>
       <el-table-column label="操作"  width="300" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" @click="handleAdd(scope.row.id)" v-if="!scope.row.pid&&!scope.row.path">新增子菜单 <i class="el-icon-plus"></i></el-button>
+          <el-button type="primary" @click="handleAdd(scope.row.id)" v-if="!scope.row.pid && !scope.row.path">新增子菜单 <i class="el-icon-plus"></i></el-button>
           <el-button type="success" @click="handleEdit(scope.row)">编辑 <i class="el-icon-edit"></i></el-button>
           <el-popconfirm
               class="ml-5"
@@ -58,7 +59,6 @@
         </template>
       </el-table-column>
     </el-table>
-
 
     <el-dialog title="菜单信息" :visible.sync="dialogFormVisible" width="30%" >
       <el-form label-width="80px" size="small">
@@ -78,7 +78,9 @@
             </el-option>
           </el-select>
         </el-form-item>
-
+        <el-form-item label="顺序">
+          <el-input v-model="form.sortNum" autocomplete="off"></el-input>
+        </el-form-item>
         <el-form-item label="描述">
           <el-input v-model="form.description" autocomplete="off"></el-input>
         </el-form-item>
@@ -88,32 +90,14 @@
         <el-button type="primary" @click="save">确 定</el-button>
       </div>
     </el-dialog>
-
-    <el-dialog title="菜单分配" :visible.sync="menuDialogVis" width="30%">
-      <el-tree
-          :props="props"
-          :data="menuData"
-          show-checkbox
-          node-key="id"
-          ref="tree"
-          :default-expanded-keys="expends"
-          :default-checked-keys="checks"
-          check-strictly="true">
-         <span class="custom-tree-node" slot-scope="{ node, data }">
-            <span><i :class="data.icon"></i> {{ data.name }}</span>
-         </span>
-      </el-tree>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="menuDialogVis = false">取 消</el-button>
-        <el-button type="primary" @click="saveRoleMenu">确 定</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 
 <script>
+import {serverIp} from "../../public/config";
+
 export default {
-  name: "Role",
+  name: "Menu",
   data() {
     return {
       tableData: [],
@@ -123,18 +107,8 @@ export default {
       name: "",
       form: {},
       dialogFormVisible: false,
-      menuDialogVis: false,
       multipleSelection: [],
-      menuData: [],
-      props: {
-        label: 'name',
-      },
-      expends: [],
-      checks: [],
-      roleId: 0,
-      roleFlag: '',
-      ids: [],
-      options:[]
+      options: []
     }
   },
   created() {
@@ -150,10 +124,10 @@ export default {
         this.tableData = res.data
       })
 
-      this.request.get("/menu/ids").then(r => {
-        this.ids = r.data
+      // 请求图标的数据
+      this.request.get("/menu/icons").then(res => {
+        this.options = res.data
       })
-
     },
     save() {
       this.request.post("/menu", this.form).then(res => {
@@ -166,43 +140,16 @@ export default {
         }
       })
     },
-    saveRoleMenu() {
-      this.request.post("/menu/roleMenu/" + this.roleId, this.$refs.tree.getCheckedKeys()).then(res => {
-        if (res.code === '200') {
-          this.$message.success("绑定成功")
-          this.menuDialogVis = false
-
-          // 操作管理员角色后需要重新登录
-          if (this.roleFlag === 'ROLE_ADMIN') {
-            this.$store.commit("logout")
-          }
-
-        } else {
-          this.$message.error(res.msg)
-        }
-      })
-    },
     handleAdd(pid) {
       this.dialogFormVisible = true
       this.form = {}
-      if(pid)
-      {
-        this.form.pid = pid;
+      if (pid) {
+        this.form.pid = pid
       }
-
-      //请求图标的数据
-      this.request.get("/menu/icons"). then(res => {
-        this.options = res.data
-      })
     },
     handleEdit(row) {
       this.form = JSON.parse(JSON.stringify(row))
       this.dialogFormVisible = true
-
-      //请求图标的数据
-      this.request.get("/menu/icons"). then(res => {
-        this.options = res.data
-      })
     },
     del(id) {
       this.request.delete("/menu/" + id).then(res => {
@@ -243,23 +190,15 @@ export default {
       this.pageNum = pageNum
       this.load()
     },
-    async selectMenu(role) {
-      this.roleId = role.id
-      this.roleFlag = role.flag
-
-      // 请求菜单数据
-      this.request.get("/menu").then(res => {
-        this.menuData = res.data
-
-        // 把后台返回的菜单数据处理成 id数组
-        this.expends = this.menuData.map(v => v.id)
-      })
-
-
+    exp() {
+      window.open(`http://${serverIp}:9090/role/export`)
+    },
+    handleExcelImportSuccess() {
+      this.$message.success("导入成功")
+      this.load()
+    }
   }
 }
-}
-
 </script>
 
 

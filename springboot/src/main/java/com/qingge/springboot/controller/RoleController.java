@@ -12,14 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author 青哥哥
- * @since 2022-02-10
- */
+
 @RestController
 @RequestMapping("/role")
 public class RoleController {

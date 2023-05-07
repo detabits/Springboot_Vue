@@ -5,11 +5,7 @@ import com.baomidou.mybatisplus.generator.config.OutputFile;
 
 import java.util.Collections;
 
-/**
- * mp代码生成器
- * by 青哥哥
- * @since 2022-01-26
- */
+
 public class CodeGenerator {
 
     public static void main(String[] args) {
@@ -19,7 +15,7 @@ public class CodeGenerator {
     private static void generate() {
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/yn?serverTimezone=GMT%2b8", "root", "lf123456")
                 .globalConfig(builder -> {
-                    builder.author("青哥哥") // 设置作者
+                    builder.author("刘峰") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
                             .outputDir("D:\\Vue_Code\\Springboot_Vue\\springboot\\src\\main\\java\\"); // 指定输出目录

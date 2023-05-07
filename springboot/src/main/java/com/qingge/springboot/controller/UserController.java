@@ -44,6 +44,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+
     @PostMapping("/register")
     public Result register(@RequestBody UserDTO userDTO) {
         String username = userDTO.getUsername();
@@ -110,11 +112,12 @@ public class UserController {
 
     // 分页查询 - mybatis-plus的方式
     @GetMapping("/page")
-    public IPage<User> findPage(@RequestParam Integer pageNum,
+    public IPage<User> findPage(@RequestParam Integer pageNum ,
                                 @RequestParam Integer pageSize,
                                 @RequestParam(defaultValue = "") String username,
                                 @RequestParam(defaultValue = "") String email,
                                 @RequestParam(defaultValue = "") String address) {
+
         IPage<User> page = new Page<>(pageNum, pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (!"".equals(username)) {
@@ -126,7 +129,7 @@ public class UserController {
         if (!"".equals(address)) {
             queryWrapper.like("address", address);
         }
-        queryWrapper.orderByDesc("id");
+       // queryWrapper.orderByDesc("id");
         return userService.page(page, queryWrapper);
     }
 
@@ -150,6 +153,7 @@ public class UserController {
         writer.addHeaderAlias("address", "地址");
         writer.addHeaderAlias("createTime", "创建时间");
         writer.addHeaderAlias("avatar", "头像");
+        writer.addHeaderAlias("role", "权限");
 
         // 一次性写出list内的对象到excel，使用默认样式，强制输出标题
         writer.write(list, true);
@@ -183,13 +187,15 @@ public class UserController {
         List<User> users = CollUtil.newArrayList();
         for (List<Object> row : list) {
             User user = new User();
-            user.setUsername(row.get(0).toString());
-            user.setPassword(row.get(1).toString());
-            user.setNickname(row.get(2).toString());
-            user.setEmail(row.get(3).toString());
-            user.setPhone(row.get(4).toString());
-            user.setAddress(row.get(5).toString());
-            user.setAvatar(row.get(6).toString()); //头像
+            user.setUsername(row.get(1).toString());
+            user.setPassword(row.get(2).toString());
+            user.setNickname(row.get(3).toString());
+            user.setEmail(row.get(4).toString());
+            user.setPhone(row.get(5).toString());
+            user.setAddress(row.get(6).toString());
+            //user.setCreateTime(row.get(7).toString());
+            user.setAvatar(row.get(8).toString()); //头像
+            user.setRole(row.get(9).toString()); //
             users.add(user);
         }
 

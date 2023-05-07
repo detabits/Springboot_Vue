@@ -1,3 +1,4 @@
+
 package com.qingge.springboot.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;

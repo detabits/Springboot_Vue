@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +38,8 @@ public class FileController {
     @Resource
     private FileMapper fileMapper;
 
+    @Value("${server.ip}")
+    private String serverIp;
     /**
      * 文件上传接口
      * @param file 前端传递过来的文件
@@ -43,7 +47,7 @@ public class FileController {
      * @throws IOException
      */
     @PostMapping("/upload")
-    public String upload(@RequestParam MultipartFile file) throws IOException {
+    public String upload(@RequestParam MultipartFile file) throws IOException{
         String originalFilename = file.getOriginalFilename();
         String type = FileUtil.extName(originalFilename);
         long size = file.getSize();
@@ -66,21 +70,26 @@ public class FileController {
         Files dbFiles = getFileByMd5(md5);
         if (dbFiles != null) { // 文件已存在
             url = dbFiles.getUrl();
+            dbFiles.setIsDelete(false);
+            fileMapper.updateById(dbFiles);
+
         } else {
             // 上传文件到磁盘
             file.transferTo(uploadFile);
             // 数据库若不存在重复文件，则不删除刚才上传的文件
-            url = "http://localhost:9090/file/" + fileUUID;
+            //url = "http://localhost:9090/file/" + fileUUID;
+            url = "http://"+serverIp+":9090/file/"+ fileUUID;
+            // 存储数据库
+            Files saveFile = new Files();
+            saveFile.setName(originalFilename);
+            saveFile.setType(type);
+            saveFile.setSize(size/1024);
+            saveFile.setUrl(url);
+            saveFile.setMd5(md5);
+            fileMapper.insert(saveFile);
         }
 
-        // 存储数据库
-        Files saveFile = new Files();
-        saveFile.setName(originalFilename);
-        saveFile.setType(type);
-        saveFile.setSize(size/1024);
-        saveFile.setUrl(url);
-        saveFile.setMd5(md5);
-        fileMapper.insert(saveFile);
+
 
         return url;
     }
@@ -120,6 +129,7 @@ public class FileController {
         return filesList.size() == 0 ? null : filesList.get(0);
     }
 
+
     @PostMapping("/update")
     public Result update(@RequestBody Files files) {
         return Result.success(fileMapper.updateById(files));
@@ -130,6 +140,7 @@ public class FileController {
         Files files = fileMapper.selectById(id);
         files.setIsDelete(true);
         fileMapper.updateById(files);
+
         return Result.success();
     }
 

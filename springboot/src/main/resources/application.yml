@@ -1,5 +1,7 @@
 server:
+  ip: localhost
   port: 9090
+
 
 spring:
   datasource:
@@ -18,3 +20,4 @@ mybatis-plus:
 files:
   upload:
     path: D:/Vue_Code/Springboot_Vue/files/
+    #path: /home/files/

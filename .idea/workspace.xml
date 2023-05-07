@@ -5,7 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/files/a0cd0ce7f6e84cd6882d8a15e2054285.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/CustomerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/Customer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/ec4b5115b7ca41c69d58b6e880196fe7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Files.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Files.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/MenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/RoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/IMenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/IMenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/IRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/IRoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/utils/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/utils/CodeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/public/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/public/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/components/Aside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/components/Aside.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/File.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/File.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Menu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Person.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Person.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/User.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +50,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Vue Single File Component" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,27 +75,40 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/vue/src/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\assets" />
+      <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\java\com\qingge\springboot\controller" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\views" />
+      <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\assets" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\java\com\qingge\springboot\mapper" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\java\com\qingge\springboot\entity" />
-      <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Vue_Code\Springboot_Vue\springboot" />
+      <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qingge.springboot.service" />
+      <recent name="com.qingge.springboot.mapper" />
+      <recent name="com.qingge.springboot.entity" />
+      <recent name="com.qingge.springboot.controller" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="SpringbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false">
       <module name="springboot" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qingge.springboot.SpringbootApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -86,7 +133,32 @@
       <workItem from="1681650341174" duration="2089000" />
       <workItem from="1681694437465" duration="6767000" />
       <workItem from="1681701899829" duration="2307000" />
-      <workItem from="1681975693634" duration="1189000" />
+      <workItem from="1681975693634" duration="13937000" />
+      <workItem from="1682035800996" duration="1096000" />
+      <workItem from="1682502978210" duration="8791000" />
+      <workItem from="1682594966188" duration="5051000" />
+      <workItem from="1682904930691" duration="1177000" />
+      <workItem from="1682928679562" duration="3365000" />
+      <workItem from="1682932212689" duration="2020000" />
+      <workItem from="1682938426277" duration="1951000" />
+      <workItem from="1682944666490" duration="1093000" />
+      <workItem from="1682989390359" duration="4621000" />
+      <workItem from="1683007056798" duration="2703000" />
+      <workItem from="1683010103597" duration="184000" />
+      <workItem from="1683010729383" duration="2869000" />
+      <workItem from="1683016521505" duration="10618000" />
+      <workItem from="1683080942768" duration="3576000" />
+      <workItem from="1683085284798" duration="2742000" />
+      <workItem from="1683090782785" duration="855000" />
+      <workItem from="1683096539841" duration="1869000" />
+      <workItem from="1683098462670" duration="5197000" />
+      <workItem from="1683107203161" duration="3195000" />
+      <workItem from="1683112522146" duration="1437000" />
+      <workItem from="1683204593739" duration="3943000" />
+      <workItem from="1683250809086" duration="12876000" />
+      <workItem from="1683363148877" duration="13838000" />
+      <workItem from="1683448099809" duration="7983000" />
+      <workItem from="1683459205743" duration="4939000" />
     </task>
     <task id="LOCAL-00001" summary="?">
       <created>1681699265102</created>
@@ -95,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681699265102</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="开始">
+      <created>1681977412950</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681977412950</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,6 +182,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="?" />
-    <option name="LAST_COMMIT_MESSAGE" value="?" />
+    <MESSAGE value="开始" />
+    <option name="LAST_COMMIT_MESSAGE" value="开始" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="akk" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
