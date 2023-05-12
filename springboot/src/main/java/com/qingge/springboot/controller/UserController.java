@@ -116,7 +116,8 @@ public class UserController {
                                 @RequestParam Integer pageSize,
                                 @RequestParam(defaultValue = "") String username,
                                 @RequestParam(defaultValue = "") String email,
-                                @RequestParam(defaultValue = "") String address) {
+                                @RequestParam(defaultValue = "") String address,
+                                @RequestParam(defaultValue = "") String role) {
 
         IPage<User> page = new Page<>(pageNum, pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -128,6 +129,15 @@ public class UserController {
         }
         if (!"".equals(address)) {
             queryWrapper.like("address", address);
+        }
+        if (!"".equals(role)) {
+           // if("ROLE_CUSTOMER".equals(role))
+            //{
+               // queryWrapper.like("role", "ROLE_USER").or().like("role", "ROLE_ADMIN");
+           // }
+           // else{
+                queryWrapper.like("role", role);
+           // }
         }
        // queryWrapper.orderByDesc("id");
         return userService.page(page, queryWrapper);

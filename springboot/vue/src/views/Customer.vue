@@ -72,11 +72,7 @@
         <el-form-item label="用户名">
           <el-input v-model="form.customername" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="角色">
-          <el-select clearable v-model="form.role" placeholder="请选择角色" style="width: 100%">
-            <el-option v-for="item in roles" :key="item.name" :label="item.name" :value="item.flag"></el-option>
-          </el-select>
-        </el-form-item>
+
         <el-form-item label="昵称">
           <el-input v-model="form.nickname" autocomplete="off"></el-input>
         </el-form-item>

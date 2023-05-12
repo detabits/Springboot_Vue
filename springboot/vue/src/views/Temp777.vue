@@ -4,13 +4,6 @@
       <el-input style="width: 200px" placeholder="请输入名称" suffix-icon="el-icon-search" v-model="username"></el-input>
       <el-input style="width: 200px" placeholder="请输入邮箱" suffix-icon="el-icon-message" class="ml-5" v-model="email"></el-input>
       <el-input style="width: 200px" placeholder="请输入地址" suffix-icon="el-icon-position" class="ml-5" v-model="address"></el-input>
-      <el-select style="width: 200px" placeholder="请选择角色身份" suffix-icon="el-icon-user" clearable v-model="role"  >
-        <el-option v-for="item in roles" :key="item.name"  :value="item.flag"></el-option>
-      </el-select>
-
-
-
-
 
 
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
@@ -81,11 +74,7 @@
         <el-form-item label="用户名">
           <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="角色">
-          <el-select clearable v-model="form.role" placeholder="请选择角色" style="width: 100%">
-            <el-option v-for="item in roles" :key="item.name" :label="item.name" :value="item.flag"></el-option>
-          </el-select>
-        </el-form-item>
+
         <el-form-item label="昵称">
           <el-input v-model="form.nickname" autocomplete="off"></el-input>
         </el-form-item>
@@ -123,7 +112,7 @@ export default {
       username: "",
       email: "",
       address: "",
-      role:"",
+      role:"ROLE_CUSTOMER",
       form: {},
       dialogFormVisible: false,
       multipleSelection: [],
