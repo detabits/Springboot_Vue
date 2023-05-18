@@ -5,32 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/ProductclassificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/ProductpricelistController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Productclassification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Productpricelist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/OrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/ProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/ProductclassificationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/ProductpricelistMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/OrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/ProductclassificationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/ProductpricelistService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/Order.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/Product.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/Productclassification.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/Productpricelist.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/Temp777.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/About3.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/Temp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/common/RoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/common/RoleEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/TempController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/ProductclassificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/ProductclassificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Temp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/CustomerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/TempMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/TempService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/About.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/About.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Customer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Customer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Product.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Product.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Temp777.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/About2.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/User.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +146,16 @@
       <workItem from="1683682056508" duration="5205000" />
       <workItem from="1683789923647" duration="9148000" />
       <workItem from="1683871873003" duration="16160000" />
-      <workItem from="1683896415120" duration="1590000" />
+      <workItem from="1683896415120" duration="2122000" />
+      <workItem from="1683898635717" duration="356000" />
+      <workItem from="1683943433376" duration="2014000" />
+      <workItem from="1683959418465" duration="723000" />
+      <workItem from="1683960215624" duration="389000" />
+      <workItem from="1683960688233" duration="12631000" />
+      <workItem from="1684114972088" duration="771000" />
+      <workItem from="1684286797623" duration="1981000" />
+      <workItem from="1684289184590" duration="10066000" />
+      <workItem from="1684370564228" duration="555000" />
     </task>
     <task id="LOCAL-00001" summary="?">
       <created>1681699265102</created>
@@ -183,38 +183,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="开始" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/RoleController.java</url>
-          <line>68</line>
-          <properties class="com.qingge.springboot.controller.RoleController" method="roleMenu">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.lang.String" memberName="value" />

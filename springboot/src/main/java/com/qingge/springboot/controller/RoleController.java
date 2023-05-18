@@ -39,7 +39,7 @@ public class RoleController {
         return Result.success();
     }
 
-    @GetMapping
+    @GetMapping        //回应请求角色
     public Result findAll() {
         return Result.success(roleService.list());
     }

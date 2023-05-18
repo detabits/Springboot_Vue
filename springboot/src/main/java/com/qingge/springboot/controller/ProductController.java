@@ -49,7 +49,8 @@ public class ProductController {
                                     @RequestParam Integer pageSize,
                                     @RequestParam(defaultValue = "") String productname,
                                     @RequestParam(defaultValue = "") String email,
-                                    @RequestParam(defaultValue = "") String address) {
+                                    @RequestParam(defaultValue = "") String address,
+                                       @RequestParam(defaultValue = "") String productclassification) {
             IPage<Product> page = new Page<>(pageNum, pageSize);
             QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
             if (!"".equals(productname)) {
@@ -60,6 +61,9 @@ public class ProductController {
             }
             if (!"".equals(address)) {
                 queryWrapper.like("address", address);
+            }
+            if (!"".equals(productclassification)) {
+                queryWrapper.like("productclassification", productclassification);
             }
             queryWrapper.orderByDesc("id");
 

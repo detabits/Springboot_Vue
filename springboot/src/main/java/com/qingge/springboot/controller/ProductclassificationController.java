@@ -3,6 +3,7 @@ package com.qingge.springboot.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qingge.springboot.common.Result;
 import com.qingge.springboot.entity.Productclassification;
 import com.qingge.springboot.mapper.ProductclassificationMapper;
 import com.qingge.springboot.service.ProductclassificationService;
@@ -43,13 +44,19 @@ public class ProductclassificationController {
     }
 
 
+    @GetMapping
+    public Result findAll() {
+        return Result.success(productclassificationService.list());
+    }
+
         // 分页查询 - mybatis-plus的方式
         @GetMapping("/page")
         public IPage<Productclassification> findPage(@RequestParam Integer pageNum,
                                     @RequestParam Integer pageSize,
                                     @RequestParam(defaultValue = "") String productclassificationname,
                                     @RequestParam(defaultValue = "") String email,
-                                    @RequestParam(defaultValue = "") String address) {
+                                    @RequestParam(defaultValue = "") String address,
+                                                     @RequestParam(defaultValue = "") String categoryname) {
             IPage<Productclassification> page = new Page<>(pageNum, pageSize);
             QueryWrapper<Productclassification> queryWrapper = new QueryWrapper<>();
             if (!"".equals(productclassificationname)) {
@@ -60,6 +67,9 @@ public class ProductclassificationController {
             }
             if (!"".equals(address)) {
                 queryWrapper.like("address", address);
+            }
+            if (!"".equals(categoryname)) {
+                queryWrapper.like("categoryname", categoryname);
             }
             queryWrapper.orderByDesc("id");
 

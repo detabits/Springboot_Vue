@@ -5,10 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qingge.springboot.common.Result;
-import com.qingge.springboot.entity.Customer;
+import com.qingge.springboot.entity.Temp;
 import com.qingge.springboot.entity.User;
-import com.qingge.springboot.mapper.CustomerMapper;
-import com.qingge.springboot.service.CustomerService;
+import com.qingge.springboot.mapper.TempMapper;
+import com.qingge.springboot.service.TempService;
 import com.qingge.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,47 +18,47 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/temp")
+public class TempController {
 
     // 新增和修改
     @PostMapping
-    public boolean save(@RequestBody Customer customer) {
+    public boolean save(@RequestBody Temp temp) {
         // 新增或者更新
-        return customerService.saveCustomer(customer);
+        return tempService.saveTemp(temp);
     }
 
 
     @Autowired
-    private CustomerMapper customerMapper;
+    private TempMapper tempMapper;
 
     @Autowired
-    private CustomerService customerService;
+    private TempService tempService;
 
 
 
     @DeleteMapping("/{id}")
     public Integer delete(@PathVariable Integer id) {
-        return customerMapper.deleteById(id);
+        return tempMapper.deleteById(id);
     }
 
     @PostMapping("/del/batch")
     public boolean deleteBatch(@RequestBody List<Integer> ids) { // [1,2,3]
-        return customerService.removeByIds(ids);
+        return tempService.removeByIds(ids);
     }
 
 
         // 分页查询 - mybatis-plus的方式
         @GetMapping("/page")
-        public IPage<Customer> findPage(@RequestParam Integer pageNum,
+        public IPage<Temp> findPage(@RequestParam Integer pageNum,
                                     @RequestParam Integer pageSize,
-                                    @RequestParam(defaultValue = "") String customername,
+                                    @RequestParam(defaultValue = "") String tempname,
                                     @RequestParam(defaultValue = "") String email,
                                     @RequestParam(defaultValue = "") String address) {
-            IPage<Customer> page = new Page<>(pageNum, pageSize);
-            QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
-            if (!"".equals(customername)) {
-                queryWrapper.like("customername", customername);
+            IPage<Temp> page = new Page<>(pageNum, pageSize);
+            QueryWrapper<Temp> queryWrapper = new QueryWrapper<>();
+            if (!"".equals(tempname)) {
+                queryWrapper.like("tempname", tempname);
             }
             if (!"".equals(email)) {
                 queryWrapper.like("email", email);
@@ -68,7 +68,7 @@ public class CustomerController {
             }
             queryWrapper.orderByDesc("id");
 
-            return customerService.page(page, queryWrapper);
+            return tempService.page(page, queryWrapper);
         }
 
 }

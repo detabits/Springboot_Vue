@@ -1,20 +1,12 @@
 package com.qingge.springboot.service;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.log.Log;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qingge.springboot.common.Constants;
-import com.qingge.springboot.entity.Customer;
+import com.qingge.springboot.entity.Temp;
 import com.qingge.springboot.entity.Menu;
-import com.qingge.springboot.entity.RoleMenu;
-import com.qingge.springboot.entity.User;
-import com.qingge.springboot.exception.ServiceException;
 import com.qingge.springboot.mapper.RoleMapper;
 import com.qingge.springboot.mapper.RoleMenuMapper;
-import com.qingge.springboot.mapper.CustomerMapper;
-import com.qingge.springboot.utils.TokenUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.qingge.springboot.mapper.TempMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomerService extends ServiceImpl<CustomerMapper,Customer>{
-    public boolean saveCustomer(Customer customer)
+public class TempService extends ServiceImpl<TempMapper, Temp>{
+    public boolean saveTemp(Temp temp)
     {
-        return saveOrUpdate(customer);
+        return saveOrUpdate(temp);
     }
 
     private static final Log LOG = Log.get();

@@ -10,12 +10,12 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName(value = "sys_customer")
-public class Customer {
+@TableName(value = "sys_temp")
+public class Temp {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String customername;
+    private String tempname;
     @JsonIgnore
     private String password;
     private String nickname;

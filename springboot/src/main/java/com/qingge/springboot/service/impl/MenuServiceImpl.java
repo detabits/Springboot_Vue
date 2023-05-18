@@ -31,6 +31,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             // 筛选所有数据中pid=父级id的数据就是二级菜单
             menu.setChildren(list.stream().filter(m -> menu.getId().equals(m.getPid())).collect(Collectors.toList()));
         }
+
+
         return parentNodes;
     }
 }

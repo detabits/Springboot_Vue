@@ -5,6 +5,11 @@
       <el-input style="width: 200px" placeholder="请输入名称" suffix-icon="el-icon-search" v-model="productname"></el-input>
       <el-input style="width: 200px" placeholder="请输入邮箱" suffix-icon="el-icon-message" class="ml-5" v-model="email"></el-input>
       <el-input style="width: 200px" placeholder="请输入地址" suffix-icon="el-icon-position" class="ml-5" v-model="address"></el-input>
+
+      <el-select style="width: 200px" placeholder="请选择产品分类" suffix-icon="el-icon-user" clearable v-model="productclassification"  >
+        <el-option v-for="item in productclassifications" :key="item.categoryname"  :value="item.categoryname"></el-option>
+      </el-select>
+
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
     </div>
@@ -90,9 +95,13 @@
         <el-form-item label="提货厂区">
           <el-input v-model="form.area" autocomplete="off"></el-input>
         </el-form-item>
+
         <el-form-item label="产品分类">
-          <el-input v-model="form.productclassification" autocomplete="off"></el-input>
+          <el-select clearable v-model="form.productclassification" placeholder="请选择角色" style="width: 100%">
+            <el-option v-for="item in productclassifications" :key="item.categoryname" :label="item.categoryname" :value="item.categoryname"></el-option>
+          </el-select>
         </el-form-item>
+
         <el-form-item label="是否有库存">
           <el-input v-model="form.isstock" autocomplete="off"></el-input>
         </el-form-item>
@@ -140,7 +149,8 @@ export default {
       form: {},
       dialogFormVisible: false,
       multipleSelection: [],
-      roles:[]
+      productclassifications:[],
+      productclassification:"",
     }
   },
 
@@ -159,14 +169,16 @@ export default {
           productname: this.productname,
           email: this.email,
           address: this.address,
+          productclassification:this.productclassification,
         }
       }).then(res => {
         console.log(res)
         this.tableData = res.records
         this.total = res.total
       })
-      this.request.get("/role").then(res => {
-        this.roles = res.data
+      this.request.get("/productclassification").then(res => {
+        this.productclassifications = res.data
+
       })
     },
     save() {
