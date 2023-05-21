@@ -107,6 +107,12 @@ public class UserService extends ServiceImpl<UserMapper,User>{
         return roleMenus;
     }
 
+    public User findById(Integer id) {
+        User user = getById(id);
+
+        return user;
+    }
+
 }
 
 

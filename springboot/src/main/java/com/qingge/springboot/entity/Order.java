@@ -1,49 +1,67 @@
 package com.qingge.springboot.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
 @Data
-@TableName(value = "sys_order")
-public class Order {
+@TableName("t_order")
+public class Order extends Model<Order> {
+    /**
+      * 主键
+      */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+    /**
+      * 订单编号 
+      */
+    private String orderNo;
 
-    private String conditio;
+    /**
+      * 总价 
+      */
+    private BigDecimal totalPrice;
 
-    private String type;
+    /**
+      * 下单人id 
+      */
+    private Integer userId;
 
-    private String customername;
+    /**
+      * 联系人 
+      */
+    private String linkUser;
 
+    /**
+      * 联系电话 
+      */
+    private String linkPhone;
 
+    /**
+      * 送货地址 
+      */
+    private String linkAddress;
 
-    private String salesman;
+    /**
+      * 状态 
+      */
+    private String state;
 
-    private String source;
-    private String delivery;
+    /**
+      * 创建时间 
+      */
+    private String createTime;
 
-    private Date submission;
-    private Date deadline;
+    @TableField(exist = false)
+    private String carts;
 
-    private String unit;
-    private String area;
-    private String contactperson;
-    private String contactnumber;
-    private String notes;
-    private String productname;
-    private String quantity;
-
-
-
-
-
-
-
+    @TableField(exist = false)
+    private Integer type;
 
 }

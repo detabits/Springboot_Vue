@@ -1,5 +1,6 @@
 package com.qingge.springboot.controller.dto;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.qingge.springboot.entity.Menu;
 import lombok.Data;
 
@@ -17,5 +18,8 @@ public class UserDTO {
     private String token;
     private String role;
     private List<Menu> menus;
+
+
+
 
 }

@@ -5,12 +5,81 @@ import store from "@/store";
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/1',
+    name: '1',
+    component: () => import('../views/front/1.vue')
+  },
+
+  {
+    path: '/front',
+    name: 'Front',
+    component: () => import("../layout/front"),
+    children: [
+      {
+        path: 'home',
+        name: 'FrontHome',
+        component: () => import("../views/front/home")
+      },
+      {
+        path: 'search',
+        name: 'Search',
+        component: () => import("../views/front/search")
+      },
+      {
+        path: 'goods',
+        name: 'Goods',
+        component: () => import("../views/front/goods")
+      },
+      {
+        path: 'cart',
+        name: 'Cart',
+        component: () => import("../views/front/cart")
+      },
+      {
+        path: 'preOrder',
+        name: 'PreOrder',
+        component: () => import("../views/front/preOrder")
+      },
+      {
+        path: 'order',
+        name: 'FrontOrder',
+        component: () => import("../views/front/order")
+      },
+      {
+        path: 'collect',
+        name: 'Collect',
+        component: () => import("../views/front/collect")
+      },
+      {
+        path: 'person',
+        name: 'Person',
+        component: () => import("../views/front/person")
+      },
+      {
+        path: 'address',
+        name: 'Address',
+        component: () => import("../views/front/address")
+      },
+    ]
+  },
+
 
   {
     path: '/about',
     name: 'About',
-    component: () => import('../views/About.vue')
+    component: () => import('../views/manage/About.vue')
   },
+  {
+    path: '/banner',
+    name: 'banner',
+    component: () => import('../views/manage/banner.vue')
+  },
+
+
+
+
+
   {
     path: '/about2',
     name: 'About2',
@@ -53,8 +122,6 @@ export const resetRouter = () => {
     routes
   })
 }
-
-
 export const setRoutes = () => {
   const storeMenus = localStorage.getItem("menus");
   if(storeMenus) {
@@ -98,11 +165,7 @@ export const setRoutes = () => {
   }
 }
 
-
-
-
 setRoutes()
-
 
 // 路由守卫
 router.beforeEach((to, from, next) => {

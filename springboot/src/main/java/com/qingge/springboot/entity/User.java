@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -28,4 +29,6 @@ public class User {
     private String avatar;  //头像q
 
     private String role;   //角色
+
+    private BigDecimal account;
 }

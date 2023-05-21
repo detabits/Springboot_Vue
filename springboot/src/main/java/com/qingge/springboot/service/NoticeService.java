@@ -1,16 +1,16 @@
 package com.qingge.springboot.service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qingge.springboot.entity.Order;
-import com.qingge.springboot.mapper.OrderMapper;
+import com.qingge.springboot.entity.Notice;
+import com.qingge.springboot.mapper.NoticeMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 @Service
-public class OrderService extends ServiceImpl<OrderMapper, Order> {
+public class NoticeService extends ServiceImpl<NoticeMapper, Notice> {
 
     @Resource
-    private OrderMapper orderMapper;
+    private NoticeMapper noticeMapper;
 
 }

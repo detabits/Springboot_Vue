@@ -50,6 +50,10 @@ export default {
               localStorage.setItem("user", JSON.stringify(res.data))  // 存储用户信息到浏览器
               localStorage.setItem("menus", JSON.stringify(res.data.menus))  // 存储用户信息到浏览器
 
+
+              //sessionStorage.setItem("user", JSON.stringify(res.data))
+
+
               //动态设置当前用户的路由
               setRoutes()
               this.$router.push("/")

@@ -5,6 +5,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,6 +14,7 @@ import com.qingge.springboot.common.Constants;
 import com.qingge.springboot.common.Result;
 import com.qingge.springboot.controller.dto.UserDTO;
 import com.qingge.springboot.entity.User;
+import com.qingge.springboot.service.LogService;
 import com.qingge.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,8 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    @Resource
+    private LogService logService;
 
     @PostMapping("/login")
     public Result login(@RequestBody UserDTO userDTO) {
@@ -37,6 +42,14 @@ public class UserController {
             return Result.error(Constants.CODE_400,"参数错误");
         }
         UserDTO dto = userService.login(userDTO);
+
+        //UserDTO res = userService.login(userDTO);
+         //生成token
+        //String token = JWT.create().withAudience(res.getUsername()).sign(Algorithm.HMAC256(res.getPassword()));
+        //res.setToken(token);
+
+
+        logService.log(userDTO.getUsername(), StrUtil.format("用户 {} 登录系统",userDTO.getUsername()));
         return Result.success(dto);
 
     }
@@ -53,6 +66,8 @@ public class UserController {
         if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
             return Result.error(Constants.CODE_400,"参数错误");
         }
+
+        logService.log(userDTO.getUsername(), StrUtil.format("用户 {} 注册账号成功", userDTO.getUsername()));
         return Result.success(userService.register(userDTO));
     }
 
@@ -62,7 +77,11 @@ public class UserController {
     // 新增和修改
     @PostMapping
     public boolean save(@RequestBody User user) {
+        if (user.getPassword() == null) {
+            user.setPassword("123456");
+        }
         // 新增或者更新
+        logService.log(user.getUsername(),StrUtil.format("新增用户：{} ", user.getUsername()));
         return userService.saveUser(user);
     }
 

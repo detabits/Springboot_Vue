@@ -127,7 +127,7 @@ export default {
 
   methods: {
     tiaoZhuan(){
-      this.$router.push('/login')
+      this.$router.push('/front/home')
       this.$message({
         showClose: true,
         message: 'Welcome',
