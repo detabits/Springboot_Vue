@@ -32,4 +32,6 @@ public class Result {
         return new Result(Constants.CODE_500, "系统错误", null);
     }
 
+
+
 }

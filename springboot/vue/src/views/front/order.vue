@@ -298,6 +298,8 @@ export default {
   created() {
     this.user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : {}
 
+    //alert(sessionStorage.getItem("user"))
+    //alert(this.user.username)
     if (!this.user.id) {
       this.$message({
         type: 'warning',
@@ -322,7 +324,7 @@ export default {
         return
       }
       API.post("/api/message", this.entity).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '评价成功'
@@ -334,7 +336,7 @@ export default {
     },
     confirm(id) {
       API.put("/api/order", {id: id, state: '已完成'}).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '操作成功'
@@ -391,7 +393,7 @@ export default {
     },
     pay(id) {
       API.put("/api/order/pay/" + id).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '付款成功'
@@ -407,7 +409,7 @@ export default {
     },
     cancel(id) {
       API.put("/api/order", {id: id, state: '已取消'}).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '操作成功'
@@ -418,7 +420,7 @@ export default {
     },
     del(id) {
       API.delete("/api/order/" + id).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '操作成功'

@@ -1,10 +1,14 @@
 import axios from 'axios'
 import ElementUI from 'element-ui';
 import {serverIp} from "../../public/config";
+
 const request = axios.create({
     baseURL: `http://${serverIp}:9090`,
     timeout: 50000
 })
+
+
+
 
 // request 拦截器
 // 可以自请求发送前对请求做一些处理
@@ -52,3 +56,10 @@ request.interceptors.response.use(
 
 
 export default request
+
+
+
+
+
+
+

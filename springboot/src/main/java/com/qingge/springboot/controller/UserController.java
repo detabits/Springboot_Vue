@@ -9,6 +9,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qingge.springboot.common.Constants;
 import com.qingge.springboot.common.Result;
@@ -22,8 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -33,6 +36,8 @@ public class UserController {
 
     @Resource
     private LogService logService;
+    @Resource
+    private HttpServletRequest request;
 
     @PostMapping("/login")
     public Result login(@RequestBody UserDTO userDTO) {
@@ -45,8 +50,8 @@ public class UserController {
 
         //UserDTO res = userService.login(userDTO);
          //生成token
-        //String token = JWT.create().withAudience(res.getUsername()).sign(Algorithm.HMAC256(res.getPassword()));
-        //res.setToken(token);
+        //String token = JWT.create().withAudience(dto.getUsername()).sign(Algorithm.HMAC256(dto.getPassword()));
+       // dto.setToken(token);
 
 
         logService.log(userDTO.getUsername(), StrUtil.format("用户 {} 登录系统",userDTO.getUsername()));
@@ -85,11 +90,43 @@ public class UserController {
         return userService.saveUser(user);
     }
 
+
+
+    public User getUser() {
+        String token = request.getHeader("token");
+        String username = JWT.decode(token).getAudience().get(0);
+        username=userService.findusername(username);  //特事特办
+        return userService.getOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, username));
+    }
+
+    @GetMapping("/{id}")
+    public  Result findById(@PathVariable Integer id) {
+        return Result.success(userService.findById(id));
+    }
+
+    /**
+     * 更新账户余额
+     * @param money
+     * @return
+     */
+    @PutMapping("/account/{money}")
+    public Result recharge(@PathVariable BigDecimal money) {
+        User user = getUser();
+        user.setAccount(user.getAccount().add(money));
+        userService.updateById(user);
+        logService.log(StrUtil.format("更新用户账户：{} ", user.getUsername()));
+        return Result.success(0);
+    }
+
+
+
+
     // 查询所有数据
     @GetMapping
     public List<User> findAll() {
         return userService.list();
     }
+
 
     //个人信息根据用户名查询
     @GetMapping("/username/{username}")

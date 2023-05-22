@@ -70,11 +70,7 @@ const routes = [
     name: 'About',
     component: () => import('../views/manage/About.vue')
   },
-  {
-    path: '/banner',
-    name: 'banner',
-    component: () => import('../views/manage/banner.vue')
-  },
+
 
 
 

@@ -29,6 +29,7 @@ public class LogService extends ServiceImpl<LogMapper, Log> {
         try {
             String token = request.getHeader("token");
             String username = JWT.decode(token).getAudience().get(0);
+            username=userService.findusername(username);  //特事特办
             return userService.getOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, username));
         } catch (Exception e) {
             return null;

@@ -102,24 +102,33 @@ export default {
         carts: JSON.stringify(this.carts),
         type: this.$store.state.type
       }).then(res => {
-        if (res.code === '0') {
+
+alert(3)
+        alert(res.code)
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '提交成功！'
           })
           this.$router.replace("/front/order")
-        } else {
+        }
+
+        else {
           this.$message({
             type: 'error',
             message: res.msg
           })
         }
+
       })
     },
     load() {
       this.carts = this.$store.state.carts
 
+alert(this.$store.state.carts)
+
       API.post("/api/order/pre", {carts: JSON.stringify(this.carts)}).then(res => {
+        alert("2")
         this.carts = res.data.list
         this.totalPrice = res.data.totalPrice
         this.discount = res.data.discount
@@ -139,6 +148,9 @@ export default {
       // 获取收货地址
       API.get("/api/address").then(res => {
         this.addressData = res.data
+
+
+        alert("1")
       })
     },
   }

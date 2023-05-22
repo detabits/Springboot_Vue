@@ -46,7 +46,7 @@
                :close-on-click-modal="false">
       <el-form :model="entity">
         <el-form-item label="图片" label-width="150px">
-          <el-upload action="http://localhost:9999/files/upload" :on-success="fileSuccessUpload" :file-list="fileList">
+          <el-upload action="http://localhost:9090/files/upload" :on-success="fileSuccessUpload" :file-list="fileList">
             <el-button size="small" type="primary">点击上传</el-button>
           </el-upload>
         </el-form-item>
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import API from '../../utils/request'
+import API from '../utils/request'
 const url = "/api/banner/"
 
 export default {
@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     fileSuccessUpload(res) {
-      this.entity.img = "http://localhost:9999/files/" + res.data;
+      this.entity.img = "http://localhost:9090/files/" + res.data;
       this.fileList = [res.data]
       console.log(res)
     },
@@ -127,7 +127,7 @@ export default {
     save() {
       if (!this.entity.id) {
         API.post(url, this.entity).then(res => {
-           if (res.code === '0') {
+           if (res.code === '200') {
              this.$message({
                type: "success",
                message: "操作成功"
@@ -143,7 +143,7 @@ export default {
         })
       } else {
         API.put(url, this.entity).then(res => {
-          if (res.code === '0') {
+          if (res.code === '200') {
             this.$message({
               type: "success",
               message: "操作成功"

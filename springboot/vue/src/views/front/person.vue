@@ -32,7 +32,7 @@
                     <div>{{ userInfo.username }}</div>
                   </el-form-item>
                   <el-form-item label="昵称：">
-                    <div>{{ userInfo.nickName }}</div>
+                    <div>{{ userInfo.nickname }}</div>
                   </el-form-item>
                   <el-form-item label="邮箱：">
                     <div>{{ userInfo.email }}</div>
@@ -43,9 +43,7 @@
                   <el-form-item label="地址：">
                     <div>{{ userInfo.address }}</div>
                   </el-form-item>
-                  <el-form-item label="年龄：">
-                    <div>{{ userInfo.age }}</div>
-                  </el-form-item>
+
                   <el-form-item label="账户余额：">
                     <div>￥ {{ userInfo.account }}</div>
                   </el-form-item>
@@ -64,7 +62,7 @@
                :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false">
       <el-form :model="entity">
         <el-form-item label="昵称" label-width="100px">
-          <el-input v-model="entity.nickName" autocomplete="off" style="width: 80%"></el-input>
+          <el-input v-model="entity.nickname" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
         <el-form-item label="邮箱" label-width="100px">
           <el-input v-model="entity.email" autocomplete="off" style="width: 80%"></el-input>
@@ -75,9 +73,7 @@
         <el-form-item label="地址" label-width="100px">
           <el-input v-model="entity.address" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
-        <el-form-item label="年龄" label-width="100px">
-          <el-input v-model="entity.age" autocomplete="off" style="width: 80%"></el-input>
-        </el-form-item>
+
         <el-form-item label="密码" label-width="100px">
           <el-input show-password v-model="entity.password" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
@@ -107,7 +103,7 @@
 <script>
 import API from '../../utils/request'
 
-const url = "/api/user/"
+const url = "/user/"
 
 export default {
   name: "User",
@@ -118,7 +114,7 @@ export default {
       entity: {},
       dialogFormVisible: false,
       vis: false,
-      uploadUrl: 'http://localhost:9999/files/upload',
+      uploadUrl: 'http://localhost:9090/files/upload',
       imageUrl: '',
       money: 0
     };
@@ -126,11 +122,14 @@ export default {
   created() {
     this.user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : {}
     this.load()
+
   },
   methods: {
     doRecharge() {
+
       API.put(url + "/account/" + this.money).then(res => {
-        if (res.code === '0') {
+
+        if (res.code === '200') {
           this.$message({
             type: "success",
             message: "充值成功"
@@ -150,14 +149,19 @@ export default {
       this.money = 0
     },
     load() {
+
       API.get(url + this.user.id).then(res => {
+
         this.userInfo = res.data || {}
-        this.imageUrl = "http://localhost:9999/files/" + res.data.avatar
+
+
+
+        this.imageUrl = res.data.avatar
       })
     },
     save() {
       API.put(url, this.entity).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: "success",
             message: "修改成功"

@@ -109,14 +109,14 @@ export default {
       let param = JSON.parse(JSON.stringify(obj))
       delete param.goods  // 删除多余的属性
       API.put("/api/cart/", param).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.load()
         }
       })
     },
     del(id) {
       API.delete("/api/cart/" + id).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '操作成功'

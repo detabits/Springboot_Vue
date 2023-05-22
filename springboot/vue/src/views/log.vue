@@ -81,7 +81,7 @@ export default {
     save() {
       if (!this.entity.id) {
         API.post(url, this.entity).then(res => {
-          if (res.code === '0') {
+          if (res.code === '200') {
             this.$message({
               type: "success",
               message: "操作成功"
@@ -97,7 +97,7 @@ export default {
         })
       } else {
         API.put(url, this.entity).then(res => {
-          if (res.code === '0') {
+          if (res.code === '200') {
             this.$message({
               type: "success",
               message: "操作成功"
@@ -115,7 +115,7 @@ export default {
     },
     del(id) {
       API.delete(url + id).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: "success",
             message: "操作成功"

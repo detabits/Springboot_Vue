@@ -5,88 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="784ae2be-5809-49e2-85d2-be1aeaa76138" name="变更" comment="开始">
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/AddressController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/BannerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/GoodsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/LogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/NoticeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/OrderGoodsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/YNOrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/dto/FileVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/dto/PreOrderQo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Banner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Cart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Goods.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Log.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Notice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/OrderGoods.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/YNOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/exception/CustomException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/AddressMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/BannerMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/CartMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/CategoryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/GoodsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/LogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/NoticeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/OrderGoodsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/YNOrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/AddressService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/BannerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/CartService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/CategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/GoodsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/LogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/NoticeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/OrderGoodsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/YNOrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/src/main/resources/mapper/Goods.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/收藏-激活.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/收藏.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/点赞-激活.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/点赞.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/assets/购物车-23.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/layout/front.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/layout/manage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/address.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/category.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/1.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/address.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/cart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/collect.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/goods.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/message.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/notice.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/order.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/person.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/preOrder.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/search.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/goods.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/log.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/manage/banner.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/notice.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot/vue/src/views/order.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/common/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/common/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/BannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/BannerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/GoodsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/LogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/LogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/NoticeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/OrderGoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/OrderGoodsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/controller/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/mapper/OrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/LogService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/qingge/springboot/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/layout/front.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/layout/front.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/About.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/manage/About.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/About2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/About2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/utils/request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/Order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/YNOrder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/address.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/address.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/category.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/address.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/address.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/cart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/cart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/collect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/collect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/goods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/goods.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/message.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/message.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/order.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/person.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/person.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/front/preOrder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/front/preOrder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/goods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/goods.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/log.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/log.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/manage/banner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/banner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/vue/src/views/order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/vue/src/views/order.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,9 +59,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="2OJeoA2DLUxwKbfV2EZFXwy9oWo" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -123,7 +73,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/vue/src/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/springboot/vue/src/views/manage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -134,9 +84,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\views\manage" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\views" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\java\com\qingge\springboot" />
-      <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\views\manage" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\src\main\resources\mapper" />
       <recent name="D:\Vue_Code\Springboot_Vue\springboot\vue\src\assets" />
     </key>
@@ -232,7 +182,9 @@
       <workItem from="1684411191065" duration="4641000" />
       <workItem from="1684459742043" duration="14406000" />
       <workItem from="1684545621123" duration="22917000" />
-      <workItem from="1684634687374" duration="3252000" />
+      <workItem from="1684634687374" duration="14701000" />
+      <workItem from="1684665293131" duration="11145000" />
+      <workItem from="1684720110783" duration="10007000" />
     </task>
     <task id="LOCAL-00001" summary="?">
       <created>1681699265102</created>

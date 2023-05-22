@@ -173,7 +173,7 @@ export default {
         goodsId: this.goods.id,
         userId: this.user.id
       }).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             message: "收藏成功",
             type: "success"
@@ -200,7 +200,7 @@ export default {
       this.entity.praise += 1
       this.entity.imgs = null
       API.put("/api/goods", this.entity).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             message: "点赞成功",
             type: "success"
@@ -248,7 +248,7 @@ export default {
         return;
       }
       API.post("/api/message", this.entity).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             message: "评论成功",
             type: "success"
@@ -301,7 +301,7 @@ export default {
         return
       }
       API.post("/api/cart", {goodsId: this.goods.id, count: this.num, userId: this.user.id}).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             type: 'success',
             message: '加入成功！'

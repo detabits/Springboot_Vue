@@ -108,7 +108,7 @@ export default {
         return;
       }
       API.post("/api/message", this.entity).then(res => {
-        if (res.code === '0') {
+        if (res.code === '200') {
           this.$message({
             message: "评论成功",
             type: "success"

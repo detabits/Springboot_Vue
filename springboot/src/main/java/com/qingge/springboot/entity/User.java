@@ -11,10 +11,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-@TableName(value = "sys_user")
+@TableName(value = "sys_user", autoResultMap = true)
 public class User {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     private String username;
     @JsonIgnore

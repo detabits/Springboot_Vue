@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     fileSuccessUpload(res) {
-      this.entity.file = "http://localhost:9999/files/" + res.data;
+      this.entity.file = "http://localhost:9090/files/" + res.data;
       this.fileList = [res.data]
       console.log(res)
     },
@@ -168,7 +168,7 @@ export default {
     save() {
       if (!this.entity.id) {
         API.post(url, this.entity).then(res => {
-           if (res.code === '0') {
+           if (res.code === '200') {
              this.$message({
                type: "success",
                message: "操作成功"
@@ -184,7 +184,7 @@ export default {
         })
       } else {
         API.put(url, this.entity).then(res => {
-          if (res.code === '0') {
+          if (res.code === '200') {
             this.$message({
               type: "success",
               message: "操作成功"

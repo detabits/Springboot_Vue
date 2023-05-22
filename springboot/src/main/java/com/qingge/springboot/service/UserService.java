@@ -113,6 +113,12 @@ public class UserService extends ServiceImpl<UserMapper,User>{
         return user;
     }
 
+    public String findusername(String id) {      //特事特办
+        User user = getById(id);
+         String username= user.getUsername();
+        return username;
+    }
+
 }
 
 

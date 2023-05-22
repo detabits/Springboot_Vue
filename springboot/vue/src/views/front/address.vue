@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="padding: 5px 0">
-<!--      <el-input v-model="text" @keyup.enter.native="load" style="width: 200px"> <i slot="prefix" class="el-input__icon el-icon-search"></i></el-input>-->
+      <!--      <el-input v-model="text" @keyup.enter.native="load" style="width: 200px"> <i slot="prefix" class="el-input__icon el-icon-search"></i></el-input>-->
       <el-button @click="add" type="primary" size="mini" style="margin: 10px">新增</el-button>
     </div>
     <el-table :data="tableData" border stripe style="width: 100%">
@@ -28,13 +28,13 @@
     </el-table>
     <div style="margin-top: 10px">
       <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="pageNum"
-        :page-size="pageSize"
-        :page-sizes="[2, 5, 10]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="pageNum"
+          :page-size="pageSize"
+          :page-sizes="[2, 5, 10]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
       >
       </el-pagination>
     </div>
@@ -110,16 +110,16 @@ export default {
         this.$message.warning("请登录")
         return
       }
-       API.get(url + "/page/front", {
-          params: {
-            pageNum: this.pageNum,
-            pageSize: this.pageSize,
-            name: this.text
-          }
-       }).then(res => {
-          this.tableData = res.data.records || []
-          this.total = res.data.total
-       })
+      API.get(url + "/page/front", {
+        params: {
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+          name: this.text
+        }
+      }).then(res => {
+        this.tableData = res.data.records || []
+        this.total = res.data.total
+      })
     },
     add() {
       if (!this.user.id) {
@@ -139,23 +139,23 @@ export default {
     save() {
       if (!this.entity.id) {
         API.post(url, this.entity).then(res => {
-           if (res.code === '0') {
-             this.$message({
-               type: "success",
-               message: "操作成功"
-             })
-           } else {
-             this.$message({
-               type: "error",
-               message: res.msg
-             })
-           }
-           this.load()
-           this.dialogFormVisible = false
+          if (res.code === '200') {
+            this.$message({
+              type: "success",
+              message: "操作成功"
+            })
+          } else {
+            this.$message({
+              type: "error",
+              message: res.msg
+            })
+          }
+          this.load()
+          this.dialogFormVisible = false
         })
       } else {
         API.put(url, this.entity).then(res => {
-          if (res.code === '0') {
+          if (res.code === '200') {
             this.$message({
               type: "success",
               message: "操作成功"

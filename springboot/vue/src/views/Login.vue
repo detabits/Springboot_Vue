@@ -47,11 +47,17 @@ export default {
 
           this.request.post("/user/login", this.user).then(res => {
             if(res.code === '200') {
+
+
               localStorage.setItem("user", JSON.stringify(res.data))  // 存储用户信息到浏览器
               localStorage.setItem("menus", JSON.stringify(res.data.menus))  // 存储用户信息到浏览器
 
 
-              //sessionStorage.setItem("user", JSON.stringify(res.data))
+              sessionStorage.setItem("user", JSON.stringify(res.data))
+
+             // alert( sessionStorage.getItem("user", JSON.stringify(res.data)))
+
+
 
 
               //动态设置当前用户的路由
