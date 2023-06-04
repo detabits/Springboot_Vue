@@ -47,16 +47,9 @@ public class UserController {
             return Result.error(Constants.CODE_400,"参数错误");
         }
         UserDTO dto = userService.login(userDTO);
-
-        //UserDTO res = userService.login(userDTO);
-         //生成token
-        //String token = JWT.create().withAudience(dto.getUsername()).sign(Algorithm.HMAC256(dto.getPassword()));
-       // dto.setToken(token);
-
-
-        logService.log(userDTO.getUsername(), StrUtil.format("用户 {} 登录系统",userDTO.getUsername()));
+        logService.log(userDTO.getUsername(), StrUtil.format
+                ("用户 {} 登录系统",userDTO.getUsername()));
         return Result.success(dto);
-
     }
 
     @Autowired

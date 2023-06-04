@@ -4,7 +4,7 @@
     <div style="width: 100%; height: 60px; line-height: 60px; background-color: white">
       <el-row>
         <el-col :span="4">
-          <div style="font-size: 20px; font-weight: bold; text-align: center"><a style="color: #409EFF;" href="/front/home">电商平台</a></div>
+          <div style="font-size: 20px; font-weight: bold; text-align: center"><a style="color: #409EFF;" href="/front/home">电子营销平台    </a></div>
         </el-col>
         <el-col :span="10">
           <el-menu class="side-menu" :default-active="$route.path" @select="handleMenuSelect" mode="horizontal">
@@ -31,7 +31,7 @@
         <el-col :span="6">
           <div v-if="!$route.path.includes('/search')">
             <el-input style="width: 80%" placeholder="请输入商品名称搜索商品" v-model="searchText"></el-input>
-            <el-button style="margin-left: 5px" @click="search">搜索</el-button>
+            <el-button style="margin-left: 5px"  class="edit" @click="search">搜索</el-button>
           </div>
           <div v-else>
             <div style="width: 100px;height: 20px"></div>
@@ -65,15 +65,7 @@
       </el-col>
     </el-row>
 
-<!--    底部-->
-    <div style="height: 60px; width: 100%; background-color: white; padding: 10px 0; position: fixed; bottom: 0">
-      <div style="text-align: center">
-        Copyright © 2021 电商系统
-      </div>
-      <div style="text-align: center; padding: 5px 0">
-        公众号：Java学习指南  <span style="margin-left: 20px">B站：程序员青戈</span>
-      </div>
-    </div>
+
 
   </div>
 </template>
@@ -115,5 +107,9 @@ export default {
 </script>
 
 <style scoped>
-
+.edit {
+  color: #fff;
+  background-color: rgb(21, 47, 72);
+  border-color: rgb(21, 47, 72);
+}
 </style>

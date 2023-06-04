@@ -91,7 +91,7 @@
           </el-switch>
         </el-form-item>
         <el-form-item label="图片" label-width="150px">
-          <el-upload action="http://localhost:9090/files/upload" multiple :on-success="handleSuccess" ref="upload">
+          <el-upload action="http://localhost:9090/YNFiles/upload" multiple :on-success="handleSuccess" ref="upload">
             <el-button size="small" type="primary">点击上传</el-button>
           </el-upload>
         </el-form-item>
@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     handleSuccess(res) {
-      let url = "http://localhost:9090/files/" + res.data
+      let url = "http://localhost:9090/YNFiles/" + res.data
       this.fileList.push(url)
     },
     handleSizeChange(pageSize) {

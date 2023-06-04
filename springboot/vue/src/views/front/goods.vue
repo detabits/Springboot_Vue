@@ -90,7 +90,7 @@
 
               <div
                   style="padding-bottom: 10px; margin-bottom: 20px; border-bottom: 2px solid orangered; font-size: 20px">
-                商品评论
+                产品评论
               </div>
 
               <div style="display: flex; padding: 20px" v-for="item in messages">
@@ -215,7 +215,9 @@ export default {
       })
     },
     loadMessage() {
+
       API.get("/api/message/foreign/" + this.goods.id).then(res => {
+
         this.messages = res.data;
       })
     },

@@ -2,13 +2,20 @@ server:
   ip: localhost
   port: 9090
 
-
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/yn?serverTimezone=GMT%2b8
     username: root
     password: lf123456
+
+  # 静态文件请求匹配方式
+  mvc:
+    static-path-pattern: /**
+  # 修改默认的静态寻址资源目录 多个使用逗号分隔
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/,classpath:/public/,classpath:/itstyle/,classpath:/static/file
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml  #扫描所有mybatis的xml文件
 #  configuration:
@@ -21,3 +28,4 @@ files:
   upload:
     path: D:/Vue_Code/Springboot_Vue/files/
     #path: /home/files/
+

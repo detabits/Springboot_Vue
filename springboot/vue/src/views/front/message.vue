@@ -75,7 +75,9 @@ export default {
     },
 
     loadMessage() {
+
       API.get("/api/message/foreign/").then(res => {
+
         this.messages = res.data;
       })
     },

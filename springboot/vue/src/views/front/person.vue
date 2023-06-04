@@ -6,8 +6,8 @@
           <div style="padding: 10px 0; border-bottom: 1px solid #ccc; display: flex">
             <div style="flex: 1;font-size: 18px">个人信息</div>
             <div style="flex: 1; text-align: right">
-              <el-button @click="recharge">充值</el-button>
-              <el-button @click="edit">修改</el-button>
+              <el-button @click="recharge"   class="recharge">充值</el-button>
+              <el-button @click="edit"   class="edit">修改</el-button>
             </div>
           </div>
           <el-row>
@@ -114,7 +114,7 @@ export default {
       entity: {},
       dialogFormVisible: false,
       vis: false,
-      uploadUrl: 'http://localhost:9090/files/upload',
+      uploadUrl: 'http://localhost:9090/YNFiles/upload',
       imageUrl: '',
       money: 0
     };
@@ -224,4 +224,17 @@ export default {
 .el-form-item {
   margin-bottom: 10px;
 }
+
+.recharge
+{
+  color: #fff;
+  background-color: rgb(21, 47, 72);
+  border-color: rgb(21, 47, 72);
+}
+.edit {
+  color: #fff;
+  background-color: rgb(21, 47, 72);
+  border-color: rgb(21, 47, 72);
+}
+
 </style>

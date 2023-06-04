@@ -46,9 +46,12 @@
                :close-on-click-modal="false">
       <el-form :model="entity">
         <el-form-item label="图片" label-width="150px">
-          <el-upload action="http://localhost:9090/files/upload" :on-success="fileSuccessUpload" :file-list="fileList">
+          <el-upload action="http://localhost:9090/YNFiles/upload" :on-success="fileSuccessUpload" :file-list="fileList">
             <el-button size="small" type="primary">点击上传</el-button>
           </el-upload>
+        </el-form-item>
+        <el-form-item label="图片地址" label-width="150px">
+          <el-input v-model="entity.img" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
         <el-form-item label="关联url" label-width="150px">
           <el-input v-model="entity.url" autocomplete="off" style="width: 80%"></el-input>
@@ -90,7 +93,8 @@ export default {
   },
   methods: {
     fileSuccessUpload(res) {
-      this.entity.img = "http://localhost:9090/files/" + res.data;
+      this.entity.img = "http://localhost:9090/YNFiles/" + res.data;
+
       this.fileList = [res.data]
       console.log(res)
     },

@@ -68,7 +68,7 @@
         <!--    推荐商品-->
         <el-col :span="18">
           <el-card>
-            <div style="padding: 10px 0; border-bottom: 2px solid orangered; font-size: 20px; color: orangered">推荐商品</div>
+            <div style="padding: 10px 0; border-bottom: 2px solid orangered; font-size: 20px; color: orangered">推荐产品</div>
             <div style="padding: 10px 0">
               <el-row :gutter="10">
                 <el-col :span="6" v-for="item in recommend" :key="item.id" style="margin-bottom: 10px">
@@ -157,7 +157,6 @@ export default {
       this.loadTable(id)
     },
     load() {
-
       API.get("/api/banner").then(res => {
         this.imgList = res.data
       })

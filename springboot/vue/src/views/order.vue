@@ -107,7 +107,7 @@ export default {
       this.save()
     },
     fileSuccessUpload(res) {
-      this.entity.file = "http://localhost:9090/files/" + res.data;
+      this.entity.file = "http://localhost:9090/YNFiles/" + res.data;
       this.fileList = [res.data]
       console.log(res)
     },
