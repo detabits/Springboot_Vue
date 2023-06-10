@@ -6,14 +6,13 @@
       <!--      <el-input style="width: 200px" placeholder="请输入地址" suffix-icon="el-icon-position" class="ml-5" v-model="address"></el-input>-->
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
-    </div>
 
-    <div style="margin: 10px 0">
       <el-button type="primary" @click="handleAdd">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
       <el-popconfirm
           class="ml-5"
           confirm-button-text='确定'
           cancel-button-text='我再想想'
+          cancel-button-type=""
           icon="el-icon-info"
           icon-color="red"
           title="您确定批量删除这些数据吗？"
@@ -29,7 +28,7 @@
 
     <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'"  @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="id" label="ID" width="80"></el-table-column>
+      <el-table-column prop="id" label="ID " width="80" sortable></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="flag" label="唯一标识"></el-table-column>
       <el-table-column prop="description" label="描述"></el-table-column>
@@ -41,6 +40,7 @@
               class="ml-5"
               confirm-button-text='确定'
               cancel-button-text='我再想想'
+          cancel-button-type=""
               icon="el-icon-info"
               icon-color="red"
               title="您确定删除吗？"

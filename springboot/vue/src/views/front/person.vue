@@ -114,7 +114,7 @@ export default {
       entity: {},
       dialogFormVisible: false,
       vis: false,
-      uploadUrl: 'http://localhost:9090/YNFiles/upload',
+      uploadUrl: 'http://localhost:9090/static/file/upload',
       imageUrl: '',
       money: 0
     };

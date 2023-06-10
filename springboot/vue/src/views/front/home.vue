@@ -22,7 +22,7 @@
           </el-col>
 
           <el-col :span="20">
-            <!--          分类商品-->
+            <!--          分类产品-->
             <div style="min-height: 150px">
               <el-row :gutter="10">
                 <el-col :span="6" v-for="item in tableData" :key="item.id">
@@ -65,7 +65,7 @@
 
     <div style="margin-top: 10px">
       <el-row :gutter="10">
-        <!--    推荐商品-->
+        <!--    推荐产品-->
         <el-col :span="18">
           <el-card>
             <div style="padding: 10px 0; border-bottom: 2px solid orangered; font-size: 20px; color: orangered">推荐产品</div>

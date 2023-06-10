@@ -30,7 +30,7 @@
         </el-col>
         <el-col :span="6">
           <div v-if="!$route.path.includes('/search')">
-            <el-input style="width: 80%" placeholder="请输入商品名称搜索商品" v-model="searchText"></el-input>
+            <el-input style="width: 80%" placeholder="请输入产品名称搜索产品" v-model="searchText"></el-input>
             <el-button style="margin-left: 5px"  class="edit" @click="search">搜索</el-button>
           </div>
           <div v-else>
@@ -50,8 +50,8 @@
             </el-dropdown>
           </div>
           <div style="text-align: right; padding-right: 10px" v-else>
-            <el-button @click="$router.replace('/login')">登录</el-button>
-            <el-button @click="$router.replace('/register')">注册</el-button>
+            <el-button  style="background-color: #1E90FF;" @click="$router.replace('/login')">登录</el-button>
+            <el-button  style="background-color: #FFA500;" @click="$router.replace('/register')">注册</el-button>
           </div>
 
         </el-col>
@@ -82,7 +82,6 @@ export default {
   },
   created() {
     this.user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : {}
-
   },
   methods: {
     search() {

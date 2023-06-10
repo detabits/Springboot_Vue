@@ -67,9 +67,13 @@ public class AddressController {
     @GetMapping("/page")
     public Result findPage(
             @RequestParam(required = false, defaultValue = "1") Integer pageNum,
-            @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false, defaultValue = "") String link_user) {
         LambdaQueryWrapper<Address> query = Wrappers.<Address>lambdaQuery().orderByDesc(Address::getId);
 //        query.eq(Address::getUserId, getUser().getId());
+        if (!"".equals(link_user)) {
+            query.like(Address::getLinkUser, link_user);
+        }
         IPage<Address> page = addressService.page(new Page<>(pageNum, pageSize), query);
         return Result.success(page);
     }

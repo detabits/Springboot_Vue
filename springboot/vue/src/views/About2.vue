@@ -18,6 +18,7 @@
           class="ml-5"
           confirm-button-text='确定'
           cancel-button-text='我再想想'
+          cancel-button-type=""
           icon="el-icon-info"
           icon-color="red"
           title="您确定批量删除这些数据吗？"
@@ -48,6 +49,7 @@
               class="ml-5"
               confirm-button-text='确定'
               cancel-button-text='我再想想'
+          cancel-button-type=""
               icon="el-icon-info"
               icon-color="red"
               title="您确定删除吗？"

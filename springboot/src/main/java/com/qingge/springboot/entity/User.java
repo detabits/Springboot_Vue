@@ -17,18 +17,20 @@ public class User {
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     private String username;
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
     private String nickname;
     private String email;
     private String phone;
     private String address;
 
-    private Date createTime;
+    private String createTime;
 
     private String avatar;  //头像q
 
     private String role;   //角色
 
     private BigDecimal account;
+
+    private String tags;   //标签
 }

@@ -1,6 +1,7 @@
 package com.qingge.springboot.controller;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
@@ -14,9 +15,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qingge.springboot.common.Constants;
 import com.qingge.springboot.common.Result;
 import com.qingge.springboot.controller.dto.UserDTO;
+import com.qingge.springboot.entity.Product;
 import com.qingge.springboot.entity.User;
+
+import com.qingge.springboot.entity.YNOrder;
+
 import com.qingge.springboot.service.LogService;
 import com.qingge.springboot.service.UserService;
+
+import com.qingge.springboot.service.YNOrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,24 +51,30 @@ public class UserController {
     public Result login(@RequestBody UserDTO userDTO) {
         String username = userDTO.getUsername();
         String password = userDTO.getPassword();
+
         if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
             return Result.error(Constants.CODE_400,"参数错误");
         }
         UserDTO dto = userService.login(userDTO);
-        logService.log(userDTO.getUsername(), StrUtil.format
-                ("用户 {} 登录系统",userDTO.getUsername()));
+        logService.log(userDTO.getUsername(), StrUtil.format("用户 {} 登录系统",userDTO.getUsername()));
         return Result.success(dto);
     }
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private YNOrderService YNOrderService;
 
 
     @PostMapping("/register")
     public Result register(@RequestBody UserDTO userDTO) {
         String username = userDTO.getUsername();
         String password = userDTO.getPassword();
+
+        userDTO.setRole("ROLE_CUSTOMER");
+        userDTO.setCreateTime(DateUtil.now());
+        userDTO.setAvatar("https://b.zol-img.com.cn/desk/bizhi/image/10/960x600/1598319721647.jpg");
+
         if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
             return Result.error(Constants.CODE_400,"参数错误");
         }
@@ -70,16 +84,18 @@ public class UserController {
     }
 
 
-
-
     // 新增和修改
     @PostMapping
     public boolean save(@RequestBody User user) {
         if (user.getPassword() == null) {
             user.setPassword("123456");
+            // 新增或者更新
+            logService.log(StrUtil.format("新增用户：{} ", user.getUsername()));
         }
-        // 新增或者更新
-        logService.log(user.getUsername(),StrUtil.format("新增用户：{} ", user.getUsername()));
+       else{
+            // 新增或者更新
+            logService.log(StrUtil.format("更新用户：{} ", user.getUsername()));
+        }
         return userService.saveUser(user);
     }
 
@@ -121,6 +137,7 @@ public class UserController {
     }
 
 
+
     //个人信息根据用户名查询
     @GetMapping("/username/{username}")
     public Result findOne(@PathVariable String username){
@@ -132,11 +149,14 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public boolean delete(@PathVariable Integer id) {
+        User user = userService.getById(id);
+        logService.log(StrUtil.format("删除用户 {} ", user.getUsername()));
         return userService.removeById(id);
     }
 
     @PostMapping("/del/batch")
     public boolean deleteBatch(@RequestBody List<Integer> ids) { // [1,2,3]
+        logService.log(StrUtil.format("批量删除用户"));
         return userService.removeByIds(ids);
     }
 
@@ -164,31 +184,49 @@ public class UserController {
     public IPage<User> findPage(@RequestParam Integer pageNum ,
                                 @RequestParam Integer pageSize,
                                 @RequestParam(defaultValue = "") String username,
-                                @RequestParam(defaultValue = "") String email,
-                                @RequestParam(defaultValue = "") String address,
-                                @RequestParam(defaultValue = "") String role) {
+                                @RequestParam(defaultValue = "") String nickname,
+                                @RequestParam(defaultValue = "") String nicknameYG,
+                                @RequestParam(defaultValue = "") String phone,
+                                @RequestParam(defaultValue = "") String nicknameKH,
+                                @RequestParam(defaultValue = "") String role,
+                                @RequestParam(defaultValue = "") String productclassification) {
 
         IPage<User> page = new Page<>(pageNum, pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (!"".equals(username)) {
-            queryWrapper.like("username", username);
+            queryWrapper.and(wrapper -> wrapper.like("username", username));
         }
-        if (!"".equals(email)) {
-            queryWrapper.like("email", email);
+        if (!"".equals(nickname)) {
+            queryWrapper.and(wrapper -> wrapper.like("nickname", nickname));
         }
-        if (!"".equals(address)) {
-            queryWrapper.like("address", address);
+        //if (!"".equals(id)) {
+           // queryWrapper.and(wrapper -> wrapper.like("id", id).like("role", "ROLE_USER").or().like("role", "ROLE_ADMIN"));
+       // }
+        if (!"".equals(nicknameYG)) {
+            queryWrapper.and(wrapper -> wrapper.like("nickname", nicknameYG).like("role", "ROLE_USER").or().like("role", "ROLE_ADMIN"));
+        }
+
+        if (!"".equals(phone)) {
+            queryWrapper.and(wrapper -> wrapper.like("phone", phone));
+        }
+        if (!"".equals(nicknameKH)) {
+            queryWrapper.and(wrapper -> wrapper.like("nickname", nicknameKH)).like("role", "ROLE_CUSTOMER");
         }
         if (!"".equals(role)) {
-           // if("ROLE_CUSTOMER".equals(role))
-            //{
-               // queryWrapper.like("role", "ROLE_USER").or().like("role", "ROLE_ADMIN");
-           // }
-           // else{
-                queryWrapper.like("role", role);
-           // }
+            if("内部平台".equals(role)) {
+                queryWrapper.and(wrapper -> wrapper.like("role", "ROLE_USER").or().like("role", "ROLE_ADMIN"));
+            }
+            if("外部平台".equals(role)) {
+                queryWrapper.and(wrapper -> wrapper.like("role", "ROLE_CUSTOMER"));
+            }
+            if("ROLE_CUSTOMER".equals(role)) {
+                queryWrapper.and(wrapper -> wrapper.like("role", "ROLE_CUSTOMER"));
+            }
         }
-       // queryWrapper.orderByDesc("id");
+        if (!"".equals(productclassification)) {
+            queryWrapper.and(wrapper -> wrapper.like("tags", productclassification));
+        }
+        queryWrapper.orderByDesc("id");
         return userService.page(page, queryWrapper);
     }
 

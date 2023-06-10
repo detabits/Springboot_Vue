@@ -23,7 +23,7 @@
             </template>
           </el-table-column>
           <el-table-column label="订单编号" prop="orderNo"></el-table-column>
-          <el-table-column label="商品" width="300">
+          <el-table-column label="产品" width="300">
             <template slot-scope="scope">
               <div v-for="item in scope.row.carts" :key="item.id" style="display: flex">
                 <div style="flex: 2"><a :href="['/front/goods?id=' + item.goods.id]">
@@ -96,7 +96,7 @@
             </template>
           </el-table-column>
           <el-table-column label="订单编号" prop="orderNo"></el-table-column>
-          <el-table-column label="商品" width="300">
+          <el-table-column label="产品" width="300">
             <template slot-scope="scope">
               <div v-for="item in scope.row.carts" :key="item.id" style="display: flex">
                 <div style="flex: 2"><a :href="['/front/goods?id=' + item.goods.id]">
@@ -169,7 +169,7 @@
             </template>
           </el-table-column>
           <el-table-column label="订单编号" prop="orderNo"></el-table-column>
-          <el-table-column label="商品" width="300">
+          <el-table-column label="产品" width="300">
             <template slot-scope="scope">
               <div v-for="item in scope.row.carts" :key="item.id" style="display: flex">
                 <div style="flex: 2"><a :href="['/front/goods?id=' + item.goods.id]">
@@ -224,14 +224,14 @@
       <el-tab-pane label="待评价" name="已完成">
         <el-table :data="commentData" stripe style="width: 100%">
           <el-table-column label="订单编号" prop="orderNo"></el-table-column>
-          <el-table-column label="商品图片" width="300">
+          <el-table-column label="产品图片" width="300">
             <template slot-scope="scope">
               <a :href="['/front/goods?id=' + scope.row.id]">
                 <el-image :src="scope.row.imgs[0]" style="width: 100px; height: 100px;" fit="contain"></el-image>
               </a>
             </template>
           </el-table-column>
-          <el-table-column label="商品名称" prop="name"></el-table-column>
+          <el-table-column label="产品名称" prop="name"></el-table-column>
 
           <el-table-column
               fixed="right"

@@ -1,9 +1,17 @@
 package com.qingge.springboot.service;
 
 import cn.hutool.log.Log;
+import com.auth0.jwt.JWT;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qingge.springboot.entity.Goods;
 import com.qingge.springboot.entity.Product;
 import com.qingge.springboot.entity.Menu;
+import com.qingge.springboot.entity.User;
+import com.qingge.springboot.mapper.GoodsMapper;
 import com.qingge.springboot.mapper.ProductMapper;
 import com.qingge.springboot.mapper.RoleMapper;
 import com.qingge.springboot.mapper.RoleMenuMapper;
@@ -12,6 +20,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 @Service
 public class ProductService extends ServiceImpl<ProductMapper,Product>{
@@ -30,6 +40,7 @@ public class ProductService extends ServiceImpl<ProductMapper,Product>{
 
     @Resource
     private IMenuService menuService;
+
 
 
     //获取当前角色的菜单列表

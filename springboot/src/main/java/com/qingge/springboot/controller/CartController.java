@@ -39,13 +39,13 @@ public class CartController {
     @PostMapping
     public Result save(@RequestBody Cart cart) {
         cart.setCreateTime(DateUtil.now());
-        // 加入购物车，相同的商品累加
+        // 加入购物车，相同的产品累加
         Cart userCart = cartService.getOne(Wrappers.<Cart>lambdaQuery().eq(Cart::getGoodsId, cart.getGoodsId()).eq(Cart::getUserId, cart.getUserId()));
         if (userCart != null) {
             userCart.setCount(cart.getCount() + userCart.getCount());
             cartService.updateById(userCart);
         } else {
-            // 不同商品添加新的购物车记录
+            // 不同产品添加新的购物车记录
             cartService.save(cart);
         }
         return Result.success();

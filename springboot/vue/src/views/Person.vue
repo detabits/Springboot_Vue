@@ -3,14 +3,13 @@
     <el-form label-width="80px" size="small">
       <el-upload
           class="avatar-uploader"
-          :action="'http://'+ serverIp +':9090/file/upload'"
+          :action="'http://'+ serverIp +':9090/static/file/upload'"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
       >
         <img v-if="form.avatar" :src="form.avatar" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
-
 
 
       <el-form-item label="用户名">
@@ -67,8 +66,8 @@ export default {
           // 更新浏览器存储的用户信息
           this.getUser().then(res => {
             res.token = JSON.parse(localStorage.getItem("user")).token
-
             localStorage.setItem("user", JSON.stringify(res))
+            sessionStorage.setItem("user", JSON.stringify(res.data))
           })
 
         } else {
@@ -77,7 +76,9 @@ export default {
       })
     },
     handleAvatarSuccess(res) {
+
       this.form.avatar = res
+
     }
   }
 }

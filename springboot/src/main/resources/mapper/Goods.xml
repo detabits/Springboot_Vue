@@ -9,6 +9,10 @@
             <if test="name != null and name != ''">
                 and g.name like concat('%', #{name}, '%')
             </if>
+
+            <if test="pricelistname != null and pricelistname != ''">
+            and g.pricelistname like concat('%', #{pricelistname}, '%')
+            </if>
         </where>
     </select>
     <select id="getRecommend" resultType="com.qingge.springboot.entity.Goods">

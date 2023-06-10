@@ -2,6 +2,7 @@ package com.qingge.springboot.service;
 
 import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qingge.springboot.entity.User;
 import com.qingge.springboot.entity.YNOrder;
 import com.qingge.springboot.entity.Menu;
 import com.qingge.springboot.mapper.YNOrderMapper;
@@ -53,6 +54,13 @@ public class YNOrderService extends ServiceImpl<YNOrderMapper, YNOrder>{
         }
         return roleMenus;
     }
+
+    public YNOrder findById(Integer id) {
+        YNOrder yNOrder = getById(id);
+
+        return yNOrder;
+    }
+
 
 }
 

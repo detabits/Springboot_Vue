@@ -18,7 +18,7 @@ public class Cart extends Model<Cart> {
     private Long id;
 
     /**
-      * 商品id 
+      * 产品id 
       */
     private Long goodsId;
 
@@ -28,7 +28,7 @@ public class Cart extends Model<Cart> {
     private Long userId;
 
     /**
-      * 商品数量 
+      * 产品数量 
       */
     private Integer count;
     private String createTime;

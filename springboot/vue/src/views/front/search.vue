@@ -3,13 +3,13 @@
 
     <div style="margin-top: 10px">
       <el-row>
-        <!--    推荐商品-->
+        <!--    推荐产品-->
         <el-col :span="24">
           <el-card>
 
             <div style="padding: 10px 0">
               <div style="margin-bottom: 20px">
-                <el-input placeholder="输入商品名称搜索" style="width: 30%" v-model="searchText"></el-input>
+                <el-input placeholder="输入产品名称搜索" style="width: 30%" v-model="searchText"></el-input>
                 <el-button style="margin-left: 5px" @click="loadTable">搜索</el-button>
               </div>
               <el-row :gutter="10">

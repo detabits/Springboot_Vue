@@ -1,11 +1,16 @@
 <template>
   <div>
     <div style="padding: 5px 0">
-      <el-input v-model="text" @keyup.enter.native="load" style="width: 200px"> <i slot="prefix" class="el-input__icon el-icon-search"></i></el-input>
+
+        <el-input style="width: 200px" placeholder="请输入联系人" suffix-icon="el-icon-search" v-model="link_user"></el-input>
+
+        <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
+        <el-button type="warning" @click="reset">重置</el-button>
+
       <el-button @click="add" type="primary" size="mini" style="margin: 10px">新增</el-button>
     </div>
     <el-table :data="tableData" border stripe style="width: 100%">
-      <el-table-column prop="id" label="ID" width="100" sortable> </el-table-column>
+      <el-table-column prop="id" label="ID "  width="100" sortable> </el-table-column>
       <el-table-column prop="linkUser" label="联系人"></el-table-column>
       <el-table-column prop="linkAddress" label="联系地址"></el-table-column>
       <el-table-column prop="linkPhone" label="联系电话"></el-table-column>
@@ -53,15 +58,9 @@
           <el-input v-model="entity.linkPhone" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
         <el-form-item label="关联用户" label-width="150px">
-          <el-select v-model="entity.userId" value-key="id" placeholder="请选择用户">
-            <el-option
-                v-for="item in users"
-                :key="item.id"
-                :label="item.nickName"
-                :value="item.id">
-            </el-option>
-          </el-select>
+          <el-input v-model="entity.userId" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
+
 
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -90,20 +89,21 @@ export default {
       entity: {},
       total: 0,
       dialogFormVisible: false,
-      users: []
+      users: [],
+      link_user: ''
     };
   },
   created() {
     this.user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : {}
     this.$emit('user', this.user);
     this.load()
-    API.get("/api/user").then(res => {
+    API.get("/user").then(res => {
       this.users = res.data
     })
   },
   methods: {
     fileSuccessUpload(res) {
-      this.entity.file = "http://localhost:9090/YNFiles/" + res.data;
+      this.entity.file = "http://localhost:9090/static/file/" + res.data;
       this.fileList = [res.data]
       console.log(res)
     },
@@ -120,12 +120,16 @@ export default {
           params: {
             pageNum: this.pageNum,
             pageSize: this.pageSize,
-            name: this.text
+            link_user:this.link_user
           }
        }).then(res => {
           this.tableData = res.data.records || []
           this.total = res.data.total
        })
+    },
+    reset() {
+      this.link_user=""
+      this.load()
     },
     add() {
       this.entity = {}

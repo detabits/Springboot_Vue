@@ -20,7 +20,7 @@ public class OrderGoodsService extends ServiceImpl<OrderGoodsMapper, OrderGoods>
     private GoodsService goodsService;
 
     /**
-     * 根据订单id查询订单关联的商品列表
+     * 根据订单id查询订单关联的产品列表
      * @param orderId
      * @return
      */

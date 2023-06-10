@@ -17,17 +17,17 @@ public class Collect extends Model<Collect> {
     private Long id;
 
     /**
-      * 商品名称 
+      * 产品名称 
       */
     private String goodsName;
 
     /**
-      * 商品图片 
+      * 产品图片 
       */
     private String goodsImg;
 
     /**
-      * 商品id 
+      * 产品id 
       */
     private String goodsId;
 

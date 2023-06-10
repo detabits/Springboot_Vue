@@ -16,8 +16,8 @@ public class GoodsService extends ServiceImpl<GoodsMapper, Goods> {
     @Resource
     private GoodsMapper goodsMapper;
 
-    public IPage<Goods> findPage(Page<Goods> page, String name) {
-        return goodsMapper.findPage(page, name);
+    public IPage<Goods> findPage(Page<Goods> page, String name,String pricelistname) {
+        return goodsMapper.findPage(page, name,pricelistname);
     }
 
     public IPage<Goods> pageByCategory(Page<Goods> page, Long id) {
@@ -35,4 +35,6 @@ public class GoodsService extends ServiceImpl<GoodsMapper, Goods> {
     public List<Goods> findAll() {
         return goodsMapper.findAll();
     }
+
+
 }

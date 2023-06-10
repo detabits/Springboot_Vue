@@ -7,9 +7,20 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qingge.springboot.common.Result;
 import com.qingge.springboot.entity.Goods;
+
+import com.qingge.springboot.entity.Product;
+import com.qingge.springboot.entity.Productpricelist;
+
 import com.qingge.springboot.entity.User;
+import com.qingge.springboot.entity.YNOrder;
 import com.qingge.springboot.service.GoodsService;
+
+import com.qingge.springboot.service.ProductService;
+import com.qingge.springboot.service.ProductpricelistService;
+
 import com.qingge.springboot.service.UserService;
+import com.qingge.springboot.service.YNOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,6 +38,13 @@ public class GoodsController {
     @Resource
     private UserService userService;
 
+
+    @Resource
+    private ProductService productService;
+    @Resource
+    private ProductpricelistService productpricelistService;
+
+
     public User getUser() {
         String token = request.getHeader("token");
         String username = JWT.decode(token).getAudience().get(0);
@@ -37,12 +55,47 @@ public class GoodsController {
     @PostMapping
     public Result save(@RequestBody Goods goods) {
         goods.setCreateTime(DateUtil.now());
+
+        Productpricelist productpricelist;
+        productpricelist=productpricelistService.getById(goods.getPricelistname());
+        if(productpricelist!=null)
+        {
+            goods.setPricelistname(productpricelist.getPricelistname());  //价目表名称
+            goods.setDiscount(productpricelist.getDiscount()); //折扣
+        }
+        Product product;
+        product=productService.getById(goods.getName());
+        String gg7;
+        gg7=goods.getName();
+        if(product!=null){
+            goods.setName(product.getProductname());  //产品名称
+            goods.setNo(product.getProductcode());  //产品编号
+            goods.setStore(product.getStore());  //库存
+            goods.setPrice(product.getPrice());  //原价
+        }
         goodsService.save(goods);
         return Result.success();
     }
 
     @PutMapping
     public Result update(@RequestBody Goods goods) {
+
+        Productpricelist productpricelist;
+        productpricelist=productpricelistService.getById(goods.getPricelistname());
+        if(productpricelist!=null)
+        {
+            goods.setPricelistname(productpricelist.getPricelistname());  //价目表名称
+            goods.setDiscount(productpricelist.getDiscount());   //折扣
+        }
+
+        Product product;
+        product=productService.getById(goods.getName());
+        if(product!=null){
+            goods.setName(product.getProductname());  //产品名称
+            goods.setNo(product.getProductcode());  //产品编号
+            goods.setStore(product.getStore());  //库存
+            goods.setPrice(product.getPrice());  //原价
+        }
         goodsService.updateById(goods);
         return Result.success();
     }
@@ -67,7 +120,7 @@ public class GoodsController {
     }
 
     /**
-     * 推荐商品
+     * 推荐产品
      * @return
      */
     @GetMapping("/recommend")
@@ -77,7 +130,7 @@ public class GoodsController {
     }
 
     /**
-     * 推热销商品
+     * 推热销产品
      * @return
      */
     @GetMapping("/sales")
@@ -87,7 +140,7 @@ public class GoodsController {
     }
 
     /**
-     * 根据分类id查询商品
+     * 根据分类id查询产品
      * @param id
      * @param pageNum
      * @param pageSize
@@ -103,9 +156,12 @@ public class GoodsController {
 
     @GetMapping("/page")
     public Result findPage(@RequestParam(required = false, defaultValue = "") String name,
+
+                           @RequestParam(required = false, defaultValue = "") String pricelistname,
                               @RequestParam(required = false, defaultValue = "1") Integer pageNum,
                               @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
-        IPage<Goods> page = goodsService.findPage(new Page<>(pageNum, pageSize), name);
+        IPage<Goods> page = goodsService.findPage(new Page<>(pageNum, pageSize), name,pricelistname);
+
         return Result.success(page);
     }
 

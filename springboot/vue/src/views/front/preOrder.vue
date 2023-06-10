@@ -15,14 +15,14 @@
       </div>
 
 
-      <!--        商品确认-->
+      <!--        产品确认-->
       <el-table :data="carts" stripe style="width: 100%" :show-header="false">
-        <el-table-column label="商品图片" width="150">
+        <el-table-column label="产品图片" width="150">
           <template slot-scope="scope">
             <el-image :src="scope.row.goods.imgs[0]" style="width: 100px; height: 100px;" fit="contain"></el-image>
           </template>
         </el-table-column>
-        <el-table-column prop="goods.name" label="商品名称"></el-table-column>
+        <el-table-column prop="goods.name" label="产品名称"></el-table-column>
         <el-table-column label="价格">
           <template slot-scope="scope">
             <span v-html="scope.row.goods.realPrice + ' X ' + scope.row.count "></span>
@@ -93,18 +93,20 @@ export default {
         return
       }
 
-      // 提交订单
+      // 提交订单            //在这实现预置//如果加上客户名称//在这预置
       API.post("/api/order", {
         totalPrice: this.totalPrice,
         linkUser: this.chooseAddress.linkUser,
         linkPhone: this.chooseAddress.linkPhone,
         linkAddress: this.chooseAddress.linkAddress,
+        //ordertype: "载",
+        productname: this.productname,    //产品名称
+        quantity: this.quantity,
+
         carts: JSON.stringify(this.carts),
         type: this.$store.state.type
       }).then(res => {
 
-alert(3)
-        alert(res.code)
         if (res.code === '200') {
           this.$message({
             type: 'success',
@@ -125,13 +127,14 @@ alert(3)
     load() {
       this.carts = this.$store.state.carts
 
-alert(this.$store.state.carts)
+
 
       API.post("/api/order/pre", {carts: JSON.stringify(this.carts)}).then(res => {
-        alert("2")
         this.carts = res.data.list
         this.totalPrice = res.data.totalPrice
         this.discount = res.data.discount
+        this.productname = res.data.productname    //产品名称
+        this.quantity = res.data.quantity    //数量
 
         // 处理图片
         this.carts.forEach(item => {
@@ -149,8 +152,6 @@ alert(this.$store.state.carts)
       API.get("/api/address").then(res => {
         this.addressData = res.data
 
-
-        alert("1")
       })
     },
   }

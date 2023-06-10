@@ -51,10 +51,21 @@ export default {
               localStorage.setItem("menus", JSON.stringify(res.data.menus))  // 存储用户信息到浏览器
               sessionStorage.setItem("user", JSON.stringify(res.data))
 
-              //动态设置当前用户的路由
-              setRoutes()
-              this.$router.push("/")
-              this.$message.success("登录成功")
+
+              if(res.data.role=="ROLE_CUSTOMER")
+              {
+                //动态设置当前用户的路由
+                setRoutes()
+                this.$router.push("/front/home")
+                this.$message.success("登录成功")
+              }
+            else{
+                //动态设置当前用户的路由
+                setRoutes()
+                this.$router.push("/")
+                this.$message.success("登录成功")
+              }
+
             } else {
               this.$message.error(res.msg)
             }

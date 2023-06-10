@@ -5,12 +5,12 @@
 <!--      <el-button @click="add" type="primary" size="mini" style="margin: 10px">新增</el-button>-->
 <!--    </div>-->
     <el-table :data="tableData" border stripe style="width: 100%; margin-top: 10px">
-      <el-table-column label="商品名称">
+      <el-table-column label="产品名称">
         <template slot-scope="scope">
           <a :href="['/front/goods?id=' + scope.row.goodsId]">{{ scope.row.goodsName }}</a>
         </template>
       </el-table-column>
-      <el-table-column prop="goodsImg" label="商品图片">
+      <el-table-column prop="goodsImg" label="产品图片">
         <template slot-scope="scope">
           <el-image :src="scope.row.goodsImg" :preview-src-list="[scope.row.goodsImg]" style="width: 100%; height: 100px" fit="contain"></el-image>
         </template>
@@ -49,13 +49,13 @@
     <el-dialog title="信息" :visible.sync="dialogFormVisible" width="30%"
                :close-on-click-modal="false">
       <el-form :model="entity">
-        <el-form-item label="商品名称" label-width="150px">
+        <el-form-item label="产品名称" label-width="150px">
           <el-input v-model="entity.goodsName" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
-        <el-form-item label="商品图片" label-width="150px">
+        <el-form-item label="产品图片" label-width="150px">
           <el-input v-model="entity.goodsImg" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
-        <el-form-item label="商品id" label-width="150px">
+        <el-form-item label="产品id" label-width="150px">
           <el-input v-model="entity.goodsId" autocomplete="off" style="width: 80%"></el-input>
         </el-form-item>
         <el-form-item label="用户id" label-width="150px">
@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     fileSuccessUpload(res) {
-      this.entity.file = "http://localhost:9090/YNFiles/" + res.data;
+      this.entity.file = "http://localhost:9090/static/file/" + res.data;
       this.fileList = [res.data]
       console.log(res)
     },

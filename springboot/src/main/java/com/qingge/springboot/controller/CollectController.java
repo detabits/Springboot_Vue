@@ -41,7 +41,7 @@ public class CollectController {
         List<Collect> list = collectService.list(Wrappers.<Collect>lambdaQuery().eq(Collect::getGoodsId, collect.getGoodsId())
                 .eq(Collect::getUserId, getUser().getId()));
         if (CollUtil.isNotEmpty(list)) {
-            throw new CustomException("-1", "您已收藏该商品");
+            throw new CustomException("-1", "您已收藏该产品");
         }
         collect.setCreateTime(DateUtil.now());
         collectService.save(collect);

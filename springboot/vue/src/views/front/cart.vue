@@ -1,13 +1,13 @@
 <template>
   <div style="margin-top: 10px">
     <el-table :data="tableData" stripe style="width: 100%">
-      <el-table-column label="商品图片">
+      <el-table-column label="产品图片">
         <template slot-scope="scope">
           <a :href="['/front/goods?id=' + scope.row.goods.id]"><el-image :src="scope.row.goods.imgs[0]" style="width: 100px; height: 100px;" fit="contain"></el-image></a>
         </template>
       </el-table-column>
-      <el-table-column prop="goods.name" label="商品名称"></el-table-column>
-      <el-table-column prop="goods.realPrice" label="商品单价"></el-table-column>
+      <el-table-column prop="goods.name" label="产品名称"></el-table-column>
+      <el-table-column prop="goods.realPrice" label="产品单价"></el-table-column>
       <el-table-column prop="count" label="购买数量">
         <template slot-scope="scope">
           <el-input-number v-model="scope.row.count" :min="1" :max="10" label="购买数量" style="width: 100px" @change="changeCount(scope.row)"></el-input-number>
@@ -27,7 +27,7 @@
     <div style="margin-top: 10px">
       <div style="display: flex; background-color: white; padding: 10px">
         <div style="flex: 1; padding-left: 20px; color: #999; font-size: 12px">
-          <div>共 <span style="color: red; font-size: 20px">{{ count }}</span> 件商品</div>
+          <div>共 <span style="color: red; font-size: 20px">{{ count }}</span> 件产品</div>
           <div style="color: orange; padding-top: 5px">立即下单，享超值优惠！</div>
         </div>
         <div style="flex: 1;color: red; text-align: right">
@@ -78,7 +78,7 @@ export default {
       if (!this.tableData.length) {
         this.$message({
           type: 'warning',
-          message: '您还未选择商品'
+          message: '您还未选择产品'
         })
         return
       }

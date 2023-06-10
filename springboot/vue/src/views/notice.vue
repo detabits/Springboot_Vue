@@ -4,7 +4,7 @@
       <el-button @click="add" type="primary" size="mini" style="margin: 10px 0">新增</el-button>
     </div>
     <el-table :data="tableData" border stripe style="width: 100%">
-      <el-table-column prop="id" label="ID" width="100"> </el-table-column>
+      <el-table-column prop="id" label="ID" width="100" sortable> </el-table-column>
       <el-table-column prop="title" label="标题"> </el-table-column>
       <el-table-column prop="content" label="内容"> </el-table-column>
       <el-table-column prop="time" label="发布时间"> </el-table-column>
@@ -38,7 +38,7 @@
     </div>
 
     <!-- 弹窗   -->
-    <el-dialog title="用户信息" :visible.sync="dialogFormVisible" width="30%"
+    <el-dialog title="公告信息" :visible.sync="dialogFormVisible" width="30%"
                :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false">
       <el-form :model="entity">
         <el-form-item label="标题" label-width="100px">

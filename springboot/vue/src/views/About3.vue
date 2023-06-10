@@ -31,7 +31,7 @@ export default {
   name: "Home",
   methods: {
     tiaoZhuan() {
-      this.$router.push('/home')
+      this.$router.push('/front/home')
       this.$message({
         showClose: true,
         message: 'Welcome',

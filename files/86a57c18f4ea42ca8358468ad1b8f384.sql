@@ -33,11 +33,11 @@ CREATE TABLE `chatmsg` (
 INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '你好', '2020-04-18 18:07:49', '0');
 INSERT INTO `chatmsg` VALUES ('1582184795951594874', '1577713712942250291', '有人吗', '2020-04-26 15:43:47', '0');
 INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '你好', '2020-04-26 15:46:51', '0');
-INSERT INTO `chatmsg` VALUES ('1582184795951594874', '1577713712942250291', '商品怎么卖', '2020-04-26 15:47:42', '0');
+INSERT INTO `chatmsg` VALUES ('1582184795951594874', '1577713712942250291', '产品怎么卖', '2020-04-26 15:47:42', '0');
 INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '便宜点', '2020-04-26 15:47:56', '0');
 INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '你好，想问你一些问题可以吗？', '2020-05-17 14:09:30', '0');
 INSERT INTO `chatmsg` VALUES ('1582184795951594874', '1577713712942250291', '什么事', '2020-05-17 14:11:19', '0');
-INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '商品现在怎么样', '2020-05-17 14:11:41', '0');
+INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '产品现在怎么样', '2020-05-17 14:11:41', '0');
 INSERT INTO `chatmsg` VALUES ('1582184795951594874', '1577713712942250291', '111', '2021-02-25 10:58:00', '0');
 INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '2222', '2021-02-25 10:58:09', '0');
 INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '1111', '2021-02-25 10:58:41', '0');
@@ -69,14 +69,14 @@ INSERT INTO `chatmsg` VALUES ('1577713712942250291', '1582184795951594874', '123
 DROP TABLE IF EXISTS `collect`;
 CREATE TABLE `collect` (
   `id` varchar(64) NOT NULL COMMENT '收藏id',
-  `commid` varchar(64) NOT NULL COMMENT '商品id',
-  `commname` varchar(255) DEFAULT NULL COMMENT '商品名',
-  `commdesc` varchar(255) DEFAULT NULL COMMENT '商品描述',
+  `commid` varchar(64) NOT NULL COMMENT '产品id',
+  `commname` varchar(255) DEFAULT NULL COMMENT '产品名',
+  `commdesc` varchar(255) DEFAULT NULL COMMENT '产品描述',
   `soldtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '收藏时间',
   `collstatus` int(10) DEFAULT '1' COMMENT '0失效 1正常 2删除',
-  `cmuserid` varchar(64) NOT NULL COMMENT '商品用户id',
-  `username` varchar(255) DEFAULT NULL COMMENT '商品用户名',
-  `school` varchar(255) DEFAULT NULL COMMENT '商品所在学校',
+  `cmuserid` varchar(64) NOT NULL COMMENT '产品用户id',
+  `username` varchar(255) DEFAULT NULL COMMENT '产品用户名',
+  `school` varchar(255) DEFAULT NULL COMMENT '产品所在学校',
   `couserid` varchar(64) NOT NULL COMMENT '收藏用户id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -103,9 +103,9 @@ INSERT INTO `collect` VALUES ('1615180719155778408', '1583937609451390776', '茶
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `cid` varchar(64) NOT NULL COMMENT '评论id',
-  `commid` varchar(64) NOT NULL COMMENT '商品id',
+  `commid` varchar(64) NOT NULL COMMENT '产品id',
   `cuserid` varchar(64) NOT NULL COMMENT '评论者id',
-  `spuserid` varchar(64) DEFAULT NULL COMMENT '商品发布者id',
+  `spuserid` varchar(64) DEFAULT NULL COMMENT '产品发布者id',
   `content` varchar(255) DEFAULT NULL COMMENT '评论内容',
   `commtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '评论时间',
   `commstatus` int(10) DEFAULT '1' COMMENT '0异常 1正常 2删除',
@@ -125,7 +125,7 @@ INSERT INTO `comment` VALUES ('1614226508675446955', '1583940546885846474', '157
 DROP TABLE IF EXISTS `commimages`;
 CREATE TABLE `commimages` (
   `id` varchar(64) NOT NULL COMMENT '图片id',
-  `commid` varchar(64) DEFAULT NULL COMMENT '商品id',
+  `commid` varchar(64) DEFAULT NULL COMMENT '产品id',
   `image` varchar(255) DEFAULT NULL COMMENT '图片',
   `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '上传时间',
   `imagestatus` int(11) DEFAULT '1' COMMENT '1正常 2删除',
@@ -270,20 +270,20 @@ INSERT INTO `commimages` VALUES ('1614222528786667143', '1614222528785574194', '
 -- ----------------------------
 DROP TABLE IF EXISTS `commodity`;
 CREATE TABLE `commodity` (
-  `commid` varchar(64) NOT NULL COMMENT '商品id',
-  `commname` varchar(255) DEFAULT NULL COMMENT '商品名',
-  `commdesc` varchar(512) DEFAULT NULL COMMENT '商品描述',
+  `commid` varchar(64) NOT NULL COMMENT '产品id',
+  `commname` varchar(255) DEFAULT NULL COMMENT '产品名',
+  `commdesc` varchar(512) DEFAULT NULL COMMENT '产品描述',
   `videourl` varchar(255) DEFAULT NULL COMMENT '视频',
   `orimoney` decimal(55,2) DEFAULT NULL COMMENT '原价',
   `thinkmoney` decimal(55,2) DEFAULT NULL COMMENT '售价',
-  `school` varchar(255) DEFAULT NULL COMMENT '商品所在学校',
+  `school` varchar(255) DEFAULT NULL COMMENT '产品所在学校',
   `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
   `updatetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   `endtime` timestamp NULL DEFAULT NULL COMMENT '结束时间',
   `commstatus` int(10) DEFAULT '3' COMMENT '0违规 1正常 2删除  3待审核  4已售出',
   `common` varchar(255) DEFAULT NULL COMMENT '常用选项：自提，可小刀，不议价等选项',
   `rednumber` int(10) DEFAULT '0' COMMENT '浏览量',
-  `category` varchar(255) DEFAULT NULL COMMENT '商品类别',
+  `category` varchar(255) DEFAULT NULL COMMENT '产品类别',
   `image` varchar(255) DEFAULT NULL COMMENT '简介图',
   `userid` varchar(64) NOT NULL COMMENT '用户id',
   PRIMARY KEY (`commid`)
@@ -323,7 +323,7 @@ INSERT INTO `commodity` VALUES ('1583939483587193411', '上海永久山地车', 
 INSERT INTO `commodity` VALUES ('1583940546885846474', '爱玛电动车 小爱蜜', '爱玛电动车 小爱蜜 电动自行车学生代步电瓶车 前后真空胎 带脚踏 加长舒适后减震 3C大证 新国标 奶白咖啡 新国标', '/pic/18502d7d88f148cbb2b6e0f6fd30af7e.mp4', '2499.00', '1200.00', '北京大学', '2020-03-11 23:29:06', '2021-03-08 12:33:11', null, '1', '可小刀、可送货', '28', '出行', '/pic/0524acc413cc48809c329b1f66ed50c3.jpg', '1582184795951594874');
 INSERT INTO `commodity` VALUES ('1583941082909141536', '床上书桌', '木以成居 几乎全新电脑桌 大学生宿舍桌子上下铺带收纳书架床上书桌懒人笔记本桌写字台 竹木色LY-4001A', '/pic/663e4379787940f887ff06f8756b6cd4.mp4', '99.00', '30.00', '清华大学', '2020-03-11 23:38:02', '2020-11-16 00:30:14', null, '1', '可小刀、可送货', '2', '其他', '/pic/c8b6c2605d744ce296d8375ebbce6107.jpg', '1582184795951594874');
 INSERT INTO `commodity` VALUES ('1583941398323204767', ' 萨伽单木吉他', '萨伽SAGA 单板民谣吉他面单木吉他41寸40寸吉它初学者乐器 云杉原木色 SF700C 41寸缺角', '/pic/17c70d8fc9fb43888fd445813e4ced9f.mp4', '990.00', '500.00', '北京大学', '2020-03-11 23:43:18', '2021-03-06 15:28:24', null, '1', '可小刀、可送货', '76', '其他', '/pic/fe2eb09ceb034dbbaf23cfcda869d2f3.jpg', '1582184795951594874');
-INSERT INTO `commodity` VALUES ('1614222528785574194', '联想ThinkBook 15 2021款', '商品名称：ThinkPadThinkBook 1 背光键盘，指纹识别屏幕尺寸：15.0英寸-15.9英寸系列：ThinkBook 15裸机重量：1.5-2kg机械硬盘：无机械硬盘处理器：Intel i7屏幕刷新率16G固态硬盘（SSD）：512GB颜色：银色', '', '5999.00', '4999.00', '北京大学', '2021-02-25 11:08:48', '2021-03-06 15:51:34', null, '1', '不议价、可送货', '34', '3C数码', '/pic/ee09d458c60041b0a66c05477f71c851.jpg', '1587889073148226284');
+INSERT INTO `commodity` VALUES ('1614222528785574194', '联想ThinkBook 15 2021款', '产品名称：ThinkPadThinkBook 1 背光键盘，指纹识别屏幕尺寸：15.0英寸-15.9英寸系列：ThinkBook 15裸机重量：1.5-2kg机械硬盘：无机械硬盘处理器：Intel i7屏幕刷新率16G固态硬盘（SSD）：512GB颜色：银色', '', '5999.00', '4999.00', '北京大学', '2021-02-25 11:08:48', '2021-03-06 15:51:34', null, '1', '不议价、可送货', '34', '3C数码', '/pic/ee09d458c60041b0a66c05477f71c851.jpg', '1587889073148226284');
 
 -- ----------------------------
 -- Table structure for friends
@@ -394,9 +394,9 @@ CREATE TABLE `news` (
 -- ----------------------------
 -- Records of news
 -- ----------------------------
-INSERT INTO `news` VALUES ('1587195192937820552', '校园二手商城上线啦', '校园二手商城上线啦：环保公益两不误，与你相约在校园二手商城', '<p>校园二手商城上线，欢迎同学们注册使用，我们的口号是：<span>环保公益两不误，与你相约在校园二手商城。</span></p>', '2020-04-18 15:33:12', '猫给这儿', '/pic/4dd1b2b01a5148ae93731906073aab2d.jpg', '1', '20');
-INSERT INTO `news` VALUES ('1587195902011331190', '校园二手商铺招贤纳士', '了能够更好、更快的为同学们服务，以及让更多同学的闲置商品不再成为闲置，让更多的同学知道我们这个平台', '<p>为了能够更好、更快的为同学们服务，以及让更多同学的闲置商品不再成为闲置，让更多的同学知道我们这个平台，我们决定招收热心、负责、具有良好的沟通能力的推广人员。</p><p>岗位职责</p><p>以活跃用户、发展新用户为目标导向，策划线上、线下营销活动，并对活动主题及创意进行包装；</p><p><br></p><p>围绕部门的推广计划、推广策略、商务合作计划等，制定各类活动方案，并组织实施；</p><p><br></p><p>监控具体活动执行效果，及时总结汇报，并提出相应活动优化方案；</p><p><br></p><p>独立撰写各类新闻稿、创意广告、宣传推广软文；</p><p><br></p><p>负责公司产品推广宣传册，活动礼品、物料的采购；</p><p><br></p><p>搜集、整理和分析竞品信息，了解市场竞争趋势，定期统计、分析各类数据，提供市场分析报告，为上级提供决策依据。</p><p><br></p>', '2020-04-18 15:45:02', '猫给这儿', '/pic/e179f1fc8a4e41b78449d20f5c5ff6c3.jpg', '1', '31');
-INSERT INTO `news` VALUES ('1587198376975919635', '校园二手商城常见问题', '校园二手商城常见问题汇总：校园二手商城销售的商品来源的渠道是什么呢？你们的维修售后怎么保障的？关于本站用户关于交易', '<p>1、校园二手商城销售的商品来源的渠道是什么呢？</p><p>校园二手商城所销售的设备均来自于合法正规渠道，包括但不限于顾客闲置、国内专业回收机构等，从源头保证机器处于良好的使用状态。请您放心购买。</p><p>2、你们的维修售后怎么保障的？</p><p>校园二手商城不负责商品的售后服务，商品的售后服务请联系卖家。</p><p>3、关于本站用户</p><p>本站用户基本都是各个高校大学生，学校名称，姓名、性别必须与学生证与身份证信息一致。</p><p>4、关于交易</p><p>目前不支持线上交易，用户自行线下交易，本网站对此概不负责 。</p>', '2020-04-18 16:26:17', '猫给这儿', '/pic/26b019d2b5484ef981a7bbdf857e12bb.jpg', '1', '52');
+INSERT INTO `news` VALUES ('1587195192937820552', '校园二手产城上线啦', '校园二手产城上线啦：环保公益两不误，与你相约在校园二手产城', '<p>校园二手产城上线，欢迎同学们注册使用，我们的口号是：<span>环保公益两不误，与你相约在校园二手产城。</span></p>', '2020-04-18 15:33:12', '猫给这儿', '/pic/4dd1b2b01a5148ae93731906073aab2d.jpg', '1', '20');
+INSERT INTO `news` VALUES ('1587195902011331190', '校园二手产铺招贤纳士', '了能够更好、更快的为同学们服务，以及让更多同学的闲置产品不再成为闲置，让更多的同学知道我们这个平台', '<p>为了能够更好、更快的为同学们服务，以及让更多同学的闲置产品不再成为闲置，让更多的同学知道我们这个平台，我们决定招收热心、负责、具有良好的沟通能力的推广人员。</p><p>岗位职责</p><p>以活跃用户、发展新用户为目标导向，策划线上、线下营销活动，并对活动主题及创意进行包装；</p><p><br></p><p>围绕部门的推广计划、推广策略、产务合作计划等，制定各类活动方案，并组织实施；</p><p><br></p><p>监控具体活动执行效果，及时总结汇报，并提出相应活动优化方案；</p><p><br></p><p>独立撰写各类新闻稿、创意广告、宣传推广软文；</p><p><br></p><p>负责公司产品推广宣传册，活动礼品、物料的采购；</p><p><br></p><p>搜集、整理和分析竞品信息，了解市场竞争趋势，定期统计、分析各类数据，提供市场分析报告，为上级提供决策依据。</p><p><br></p>', '2020-04-18 15:45:02', '猫给这儿', '/pic/e179f1fc8a4e41b78449d20f5c5ff6c3.jpg', '1', '31');
+INSERT INTO `news` VALUES ('1587198376975919635', '校园二手产城常见问题', '校园二手产城常见问题汇总：校园二手产城销售的产品来源的渠道是什么呢？你们的维修售后怎么保障的？关于本站用户关于交易', '<p>1、校园二手产城销售的产品来源的渠道是什么呢？</p><p>校园二手产城所销售的设备均来自于合法正规渠道，包括但不限于顾客闲置、国内专业回收机构等，从源头保证机器处于良好的使用状态。请您放心购买。</p><p>2、你们的维修售后怎么保障的？</p><p>校园二手产城不负责产品的售后服务，产品的售后服务请联系卖家。</p><p>3、关于本站用户</p><p>本站用户基本都是各个高校大学生，学校名称，姓名、性别必须与学生证与身份证信息一致。</p><p>4、关于交易</p><p>目前不支持线上交易，用户自行线下交易，本网站对此概不负责 。</p>', '2020-04-18 16:26:17', '猫给这儿', '/pic/26b019d2b5484ef981a7bbdf857e12bb.jpg', '1', '52');
 INSERT INTO `news` VALUES ('1587368182859188837', '测试', '大大大大', '法发噶阿嘎', '2020-04-20 15:36:22', '猫给这儿', '/pic/42f523dc83864c5ab1f67268dbe45cc1.jpg', '2', '1');
 
 -- ----------------------------
@@ -417,67 +417,67 @@ CREATE TABLE `notices` (
 -- ----------------------------
 -- Records of notices
 -- ----------------------------
-INSERT INTO `notices` VALUES ('1588250830237539282', '1582184795951594874', '您的商品 <a href=/product-detail/1583938501381902202 style=\"color:#08bf91\" target=\"_blank\" >南极人2020春季新款男士韩版休闲牛仔外套</a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-04-30 20:47:10', '2');
+INSERT INTO `notices` VALUES ('1588250830237539282', '1582184795951594874', '您的产品 <a href=/product-detail/1583938501381902202 style=\"color:#08bf91\" target=\"_blank\" >南极人2020春季新款男士韩版休闲牛仔外套</a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-04-30 20:47:10', '2');
 INSERT INTO `notices` VALUES ('1588251035517231786', '1582184795951594874', '恭喜您已被设置为网站管理员，努力维护网站的良好氛围。', '1', '系统通知', '2020-04-30 20:50:35', '2');
 INSERT INTO `notices` VALUES ('1588251042987446364', '1582184795951594874', '您已被设置为网站用户，希望您再接再厉。', '1', '系统通知', '2020-04-30 20:50:42', '2');
-INSERT INTO `notices` VALUES ('1588251050454258295', '1582184795951594874', '您的商品 <a href=/product-detail/1583937754237685707 style=\"color:#08bf91\" target=\"_blank\" >湘鑫宏日式垃圾桶</a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-04-30 20:50:50', '2');
-INSERT INTO `notices` VALUES ('1588251204824159064', '1582184795951594874', '您的商品 <a href=/product-detail/1583939483587193411 style=\"color:#08bf91\" target=\"_blank\" >上海永久山地车</a> 被评论了，快去看看吧。', '1', '评论', '2020-04-30 20:53:24', '2');
-INSERT INTO `notices` VALUES ('1588252223487672096', '1582184795951594874', '您的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 未通过审核，目前不支持公开发布。', '1', '商品审核', '2020-04-30 21:10:23', '2');
-INSERT INTO `notices` VALUES ('1588252371050431095', '1582184795951594874', '您的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-04-30 21:12:51', '2');
+INSERT INTO `notices` VALUES ('1588251050454258295', '1582184795951594874', '您的产品 <a href=/product-detail/1583937754237685707 style=\"color:#08bf91\" target=\"_blank\" >湘鑫宏日式垃圾桶</a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-04-30 20:50:50', '2');
+INSERT INTO `notices` VALUES ('1588251204824159064', '1582184795951594874', '您的产品 <a href=/product-detail/1583939483587193411 style=\"color:#08bf91\" target=\"_blank\" >上海永久山地车</a> 被评论了，快去看看吧。', '1', '评论', '2020-04-30 20:53:24', '2');
+INSERT INTO `notices` VALUES ('1588252223487672096', '1582184795951594874', '您的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 未通过审核，目前不支持公开发布。', '1', '产品审核', '2020-04-30 21:10:23', '2');
+INSERT INTO `notices` VALUES ('1588252371050431095', '1582184795951594874', '您的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-04-30 21:12:51', '2');
 INSERT INTO `notices` VALUES ('1588262384763845040', '1582184795951594874', '有小伙伴在 <a href=/product-detail/1583939483587193411 style=\"color:#08bf91\" target=\"_blank\" >上海永久山地车</a> 下回复了您的评论，快去看看吧。', '1', '评论回复', '2020-04-30 23:59:44', '2');
 INSERT INTO `notices` VALUES ('1589636544748325349', '1589627579283677652', '因为您的不良行为，您在该网站的账号已被封号。', '0', '系统通知', '2020-05-16 21:42:24', '1');
 INSERT INTO `notices` VALUES ('1589636594522226396', '1589627579283677652', '您在该网站的账号已被解封，希望您保持良好的行为。', '0', '系统通知', '2020-05-16 21:43:14', '1');
-INSERT INTO `notices` VALUES ('1589638217090767109', '1582184795951594874', '您的商品 <a href=/product-detail/1583938217414801162 style=\"color:#08bf91\" target=\"_blank\" >绅范工装外套男装2020春季新品夹克</a> 已通过审核，快去看看吧。', '0', '商品审核', '2020-05-16 22:10:17', '2');
-INSERT INTO `notices` VALUES ('1589638232080391899', '1582184795951594874', '您的商品 <a href=/product-detail/1583939483587193411 style=\"color:#08bf91\" target=\"_blank\" >上海永久山地车</a> 已通过审核，快去看看吧。', '0', '商品审核', '2020-05-16 22:10:32', '2');
-INSERT INTO `notices` VALUES ('1589638243792827379', '1582184795951594874', '您的商品 <a href=/product-detail/1583937015909416441 style=\"color:#08bf91\" target=\"_blank\" >中文版3ds Max 2016从入门到精通</a> 已通过审核，快去看看吧。', '0', '商品审核', '2020-05-16 22:10:43', '2');
-INSERT INTO `notices` VALUES ('1589638785531551867', '1577713712942250291', '您的商品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-05-16 22:19:45', '2');
-INSERT INTO `notices` VALUES ('1589681358735485766', '1582184795951594874', '您的商品 <a href=/product-detail/1583937754237685707 style=\"color:#08bf91\" target=\"_blank\" >湘鑫宏日式垃圾桶</a> 进入待审核队列，请您耐心等待。', '0', '商品审核', '2020-05-17 10:09:18', '2');
-INSERT INTO `notices` VALUES ('1589681541011152986', '1582184795951594874', '您的商品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 进入待审核队列，请您耐心等待。', '0', '商品审核', '2020-05-17 10:12:21', '2');
-INSERT INTO `notices` VALUES ('1589681623060802460', '1582184795951594874', '您的商品 <a href=/product-detail/1583941082909141536 style=\"color:#08bf91\" target=\"_blank\" >床上书桌</a> 进入待审核队列，请您耐心等待。', '0', '商品审核', '2020-05-17 10:13:43', '2');
-INSERT INTO `notices` VALUES ('1589681717395332736', '1582184795951594874', '您的商品 <a href=/product-detail/1583935629583927102 style=\"color:#08bf91\" target=\"_blank\" >漫步者（EDIFIER）TWS2</a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 10:15:17', '2');
-INSERT INTO `notices` VALUES ('1589682075608824357', '1577713712942250291', '您的商品 <a href=/product-detail/1583937021773641591 style=\"color:#08bf91\" target=\"_blank\" >一次性地漏贴纸</a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 10:21:15', '2');
-INSERT INTO `notices` VALUES ('1589682406798257020', '1577713712942250291', '您的商品 <a href=/product-detail/1583935867326176449 style=\"color:#08bf91\" target=\"_blank\" >雅高 浴帘杆 晾衣杆 </a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 10:26:46', '2');
-INSERT INTO `notices` VALUES ('1589682631355190969', '1577713712942250291', '您的商品 <a href=/product-detail/1583936883626893988 style=\"color:#08bf91\" target=\"_blank\" >扫把挂夹卫生间置物架 </a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 10:30:31', '2');
-INSERT INTO `notices` VALUES ('1589682735882955561', '1577713712942250291', '您的商品 <a href=/product-detail/1583935356645701706 style=\"color:#08bf91\" target=\"_blank\" >Python神经网络编程</a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 10:32:15', '2');
-INSERT INTO `notices` VALUES ('1589683627982523739', '1577713712942250291', '您的商品 <a href=/product-detail/1583935632551786928 style=\"color:#08bf91\" target=\"_blank\" >茶花 漱口杯刷牙杯子牙刷杯牙缸洗漱杯水杯 257004 艾特斯系列</a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 10:47:07', '2');
-INSERT INTO `notices` VALUES ('1589689513365251929', '1582184795951594874', '您的商品 <a href=/product-detail/1583938722769689788 style=\"color:#08bf91\" target=\"_blank\" > 京东京造 3只装美妆蛋 葫芦型/水滴型 </a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 12:25:13', '2');
-INSERT INTO `notices` VALUES ('1589693781569642519', '1582184795951594874', '您的商品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-05-17 13:36:21', '2');
-INSERT INTO `notices` VALUES ('1589693785983511157', '1582184795951594874', '您的商品 <a href=/product-detail/1583938722769689788 style=\"color:#08bf91\" target=\"_blank\" > 京东京造 3只装美妆蛋 葫芦型/水滴型 </a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-05-17 13:36:25', '2');
-INSERT INTO `notices` VALUES ('1589693790411331579', '1582184795951594874', '您的商品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-05-17 13:36:30', '2');
-INSERT INTO `notices` VALUES ('1589693794459326444', '1582184795951594874', '您的商品 <a href=/product-detail/1583941082909141536 style=\"color:#08bf91\" target=\"_blank\" >床上书桌</a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-05-17 13:36:34', '2');
-INSERT INTO `notices` VALUES ('1589693801555215190', '1577713712942250291', '您的商品 <a href=/product-detail/1583935356645701706 style=\"color:#08bf91\" target=\"_blank\" >Python神经网络编程</a> 已通过审核，快去看看吧。', '1', '商品审核', '2020-05-17 13:36:41', '2');
-INSERT INTO `notices` VALUES ('1589693972672634667', '1577713712942250291', '您的商品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2020-05-17 13:39:32', '2');
-INSERT INTO `notices` VALUES ('1614221617091301936', '1582184795951594874', '您的商品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 未通过审核，目前不支持公开发布。', '1', '商品审核', '2021-02-25 10:53:37', '2');
-INSERT INTO `notices` VALUES ('1614221621842813317', '1582184795951594874', '您的商品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 已通过审核，快去看看吧。', '1', '商品审核', '2021-02-25 10:53:41', '2');
-INSERT INTO `notices` VALUES ('1614221665081272935', '1577713712942250291', '您的商品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 未通过审核，目前不支持公开发布。', '1', '商品审核', '2021-02-25 10:54:25', '2');
-INSERT INTO `notices` VALUES ('1614221744968644140', '1577713712942250291', '您的商品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 进入待审核队列，请您耐心等待。', '1', '商品审核', '2021-02-25 10:55:44', '2');
-INSERT INTO `notices` VALUES ('1614222299102195899', '1587889073148226284', '您的商品 <a href=/product-detail/1614222299098646065 style=\"color:#08bf91\" target=\"_blank\" >联想ThinkBook 15 2021款 酷睿版 英特尔酷睿i7 15.6英寸轻薄笔记本(i7-1165G7 16G 512G MX450独显 高色域)</a> 进入待审核队列，请您耐心等待。', '0', '商品审核', '2021-02-25 11:04:59', '1');
-INSERT INTO `notices` VALUES ('1614222528788549206', '1587889073148226284', '您的商品 <a href=/product-detail/1614222528785574194 style=\"color:#08bf91\" target=\"_blank\" >联想ThinkBook 15 2021款</a> 进入待审核队列，请您耐心等待。', '0', '商品审核', '2021-02-25 11:08:48', '1');
-INSERT INTO `notices` VALUES ('1614222544530657401', '1587889073148226284', '您的商品 <a href=/product-detail/1614222528785574194 style=\"color:#08bf91\" target=\"_blank\" >联想ThinkBook 15 2021款</a> 已通过审核，快去看看吧。', '0', '商品审核', '2021-02-25 11:09:04', '1');
-INSERT INTO `notices` VALUES ('1614225697523382543', '1582184795951594874', '您的商品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 被评论了，快去看看吧。', '1', '评论', '2021-02-25 12:01:37', '2');
+INSERT INTO `notices` VALUES ('1589638217090767109', '1582184795951594874', '您的产品 <a href=/product-detail/1583938217414801162 style=\"color:#08bf91\" target=\"_blank\" >绅范工装外套男装2020春季新品夹克</a> 已通过审核，快去看看吧。', '0', '产品审核', '2020-05-16 22:10:17', '2');
+INSERT INTO `notices` VALUES ('1589638232080391899', '1582184795951594874', '您的产品 <a href=/product-detail/1583939483587193411 style=\"color:#08bf91\" target=\"_blank\" >上海永久山地车</a> 已通过审核，快去看看吧。', '0', '产品审核', '2020-05-16 22:10:32', '2');
+INSERT INTO `notices` VALUES ('1589638243792827379', '1582184795951594874', '您的产品 <a href=/product-detail/1583937015909416441 style=\"color:#08bf91\" target=\"_blank\" >中文版3ds Max 2016从入门到精通</a> 已通过审核，快去看看吧。', '0', '产品审核', '2020-05-16 22:10:43', '2');
+INSERT INTO `notices` VALUES ('1589638785531551867', '1577713712942250291', '您的产品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-05-16 22:19:45', '2');
+INSERT INTO `notices` VALUES ('1589681358735485766', '1582184795951594874', '您的产品 <a href=/product-detail/1583937754237685707 style=\"color:#08bf91\" target=\"_blank\" >湘鑫宏日式垃圾桶</a> 进入待审核队列，请您耐心等待。', '0', '产品审核', '2020-05-17 10:09:18', '2');
+INSERT INTO `notices` VALUES ('1589681541011152986', '1582184795951594874', '您的产品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 进入待审核队列，请您耐心等待。', '0', '产品审核', '2020-05-17 10:12:21', '2');
+INSERT INTO `notices` VALUES ('1589681623060802460', '1582184795951594874', '您的产品 <a href=/product-detail/1583941082909141536 style=\"color:#08bf91\" target=\"_blank\" >床上书桌</a> 进入待审核队列，请您耐心等待。', '0', '产品审核', '2020-05-17 10:13:43', '2');
+INSERT INTO `notices` VALUES ('1589681717395332736', '1582184795951594874', '您的产品 <a href=/product-detail/1583935629583927102 style=\"color:#08bf91\" target=\"_blank\" >漫步者（EDIFIER）TWS2</a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 10:15:17', '2');
+INSERT INTO `notices` VALUES ('1589682075608824357', '1577713712942250291', '您的产品 <a href=/product-detail/1583937021773641591 style=\"color:#08bf91\" target=\"_blank\" >一次性地漏贴纸</a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 10:21:15', '2');
+INSERT INTO `notices` VALUES ('1589682406798257020', '1577713712942250291', '您的产品 <a href=/product-detail/1583935867326176449 style=\"color:#08bf91\" target=\"_blank\" >雅高 浴帘杆 晾衣杆 </a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 10:26:46', '2');
+INSERT INTO `notices` VALUES ('1589682631355190969', '1577713712942250291', '您的产品 <a href=/product-detail/1583936883626893988 style=\"color:#08bf91\" target=\"_blank\" >扫把挂夹卫生间置物架 </a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 10:30:31', '2');
+INSERT INTO `notices` VALUES ('1589682735882955561', '1577713712942250291', '您的产品 <a href=/product-detail/1583935356645701706 style=\"color:#08bf91\" target=\"_blank\" >Python神经网络编程</a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 10:32:15', '2');
+INSERT INTO `notices` VALUES ('1589683627982523739', '1577713712942250291', '您的产品 <a href=/product-detail/1583935632551786928 style=\"color:#08bf91\" target=\"_blank\" >茶花 漱口杯刷牙杯子牙刷杯牙缸洗漱杯水杯 257004 艾特斯系列</a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 10:47:07', '2');
+INSERT INTO `notices` VALUES ('1589689513365251929', '1582184795951594874', '您的产品 <a href=/product-detail/1583938722769689788 style=\"color:#08bf91\" target=\"_blank\" > 京东京造 3只装美妆蛋 葫芦型/水滴型 </a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 12:25:13', '2');
+INSERT INTO `notices` VALUES ('1589693781569642519', '1582184795951594874', '您的产品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-05-17 13:36:21', '2');
+INSERT INTO `notices` VALUES ('1589693785983511157', '1582184795951594874', '您的产品 <a href=/product-detail/1583938722769689788 style=\"color:#08bf91\" target=\"_blank\" > 京东京造 3只装美妆蛋 葫芦型/水滴型 </a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-05-17 13:36:25', '2');
+INSERT INTO `notices` VALUES ('1589693790411331579', '1582184795951594874', '您的产品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-05-17 13:36:30', '2');
+INSERT INTO `notices` VALUES ('1589693794459326444', '1582184795951594874', '您的产品 <a href=/product-detail/1583941082909141536 style=\"color:#08bf91\" target=\"_blank\" >床上书桌</a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-05-17 13:36:34', '2');
+INSERT INTO `notices` VALUES ('1589693801555215190', '1577713712942250291', '您的产品 <a href=/product-detail/1583935356645701706 style=\"color:#08bf91\" target=\"_blank\" >Python神经网络编程</a> 已通过审核，快去看看吧。', '1', '产品审核', '2020-05-17 13:36:41', '2');
+INSERT INTO `notices` VALUES ('1589693972672634667', '1577713712942250291', '您的产品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2020-05-17 13:39:32', '2');
+INSERT INTO `notices` VALUES ('1614221617091301936', '1582184795951594874', '您的产品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 未通过审核，目前不支持公开发布。', '1', '产品审核', '2021-02-25 10:53:37', '2');
+INSERT INTO `notices` VALUES ('1614221621842813317', '1582184795951594874', '您的产品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 已通过审核，快去看看吧。', '1', '产品审核', '2021-02-25 10:53:41', '2');
+INSERT INTO `notices` VALUES ('1614221665081272935', '1577713712942250291', '您的产品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 未通过审核，目前不支持公开发布。', '1', '产品审核', '2021-02-25 10:54:25', '2');
+INSERT INTO `notices` VALUES ('1614221744968644140', '1577713712942250291', '您的产品 <a href=/product-detail/1577792919764240135 style=\"color:#08bf91\" target=\"_blank\" >iPhone X </a> 进入待审核队列，请您耐心等待。', '1', '产品审核', '2021-02-25 10:55:44', '2');
+INSERT INTO `notices` VALUES ('1614222299102195899', '1587889073148226284', '您的产品 <a href=/product-detail/1614222299098646065 style=\"color:#08bf91\" target=\"_blank\" >联想ThinkBook 15 2021款 酷睿版 英特尔酷睿i7 15.6英寸轻薄笔记本(i7-1165G7 16G 512G MX450独显 高色域)</a> 进入待审核队列，请您耐心等待。', '0', '产品审核', '2021-02-25 11:04:59', '1');
+INSERT INTO `notices` VALUES ('1614222528788549206', '1587889073148226284', '您的产品 <a href=/product-detail/1614222528785574194 style=\"color:#08bf91\" target=\"_blank\" >联想ThinkBook 15 2021款</a> 进入待审核队列，请您耐心等待。', '0', '产品审核', '2021-02-25 11:08:48', '1');
+INSERT INTO `notices` VALUES ('1614222544530657401', '1587889073148226284', '您的产品 <a href=/product-detail/1614222528785574194 style=\"color:#08bf91\" target=\"_blank\" >联想ThinkBook 15 2021款</a> 已通过审核，快去看看吧。', '0', '产品审核', '2021-02-25 11:09:04', '1');
+INSERT INTO `notices` VALUES ('1614225697523382543', '1582184795951594874', '您的产品 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 被评论了，快去看看吧。', '1', '评论', '2021-02-25 12:01:37', '2');
 INSERT INTO `notices` VALUES ('1614225873183378502', '1582184795951594874', '有小伙伴在 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 下回复了您的评论，快去看看吧。', '1', '评论回复', '2021-02-25 12:04:33', '2');
 INSERT INTO `notices` VALUES ('1614226211682549008', '1577713712942250291', '有小伙伴在 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 下回复了您的评论，快去看看吧。', '1', '评论回复', '2021-02-25 12:10:11', '2');
 INSERT INTO `notices` VALUES ('1614226272830999912', '1577713712942250291', '有小伙伴在 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 下回复了您的评论，快去看看吧。', '1', '评论回复', '2021-02-25 12:11:12', '2');
 INSERT INTO `notices` VALUES ('1614226412763723438', '1577713712942250291', '有小伙伴在 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 下回复了您的评论，快去看看吧。', '1', '评论回复', '2021-02-25 12:13:32', '2');
 INSERT INTO `notices` VALUES ('1614226445535726188', '1577713712942250291', '有小伙伴在 <a href=/product-detail/1583941398323204767 style=\"color:#08bf91\" target=\"_blank\" > 萨伽单木吉他</a> 下回复了您的评论，快去看看吧。', '1', '评论回复', '2021-02-25 12:14:05', '2');
-INSERT INTO `notices` VALUES ('1614226508680695911', '1582184795951594874', '您的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被评论了，快去看看吧。', '1', '评论', '2021-02-25 12:15:08', '2');
+INSERT INTO `notices` VALUES ('1614226508680695911', '1582184795951594874', '您的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被评论了，快去看看吧。', '1', '评论', '2021-02-25 12:15:08', '2');
 INSERT INTO `notices` VALUES ('1614226529651307429', '1577713712942250291', '有小伙伴在 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 下回复了您的评论，快去看看吧。', '1', '评论回复', '2021-02-25 12:15:29', '2');
 INSERT INTO `notices` VALUES ('1615031012523810894', '1577713712942250291', '您已成功购买 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 请随时查看物流信息。', '1', '系统通知', '2021-03-06 19:43:32', '2');
-INSERT INTO `notices` VALUES ('1615031012532993796', '1582184795951594874', '您的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-06 19:43:32', '2');
+INSERT INTO `notices` VALUES ('1615031012532993796', '1582184795951594874', '您的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-06 19:43:32', '2');
 INSERT INTO `notices` VALUES ('1615031880816901962', '1577713712942250291', '您购买的 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已经发货， 请注意查看物流信息。', '1', '系统通知', '2021-03-06 19:58:00', '2');
-INSERT INTO `notices` VALUES ('1615031902328425566', '1582184795951594874', '您售出的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已经被收货啦。', '1', '系统通知', '2021-03-06 19:58:22', '2');
+INSERT INTO `notices` VALUES ('1615031902328425566', '1582184795951594874', '您售出的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已经被收货啦。', '1', '系统通知', '2021-03-06 19:58:22', '2');
 INSERT INTO `notices` VALUES ('1615091489913535674', '1577713712942250291', '您已成功购买 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 请随时查看物流信息。', '1', '系统通知', '2021-03-07 12:31:29', '2');
-INSERT INTO `notices` VALUES ('1615091489925245027', '1582184795951594874', '您的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-07 12:31:29', '2');
+INSERT INTO `notices` VALUES ('1615091489925245027', '1582184795951594874', '您的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-07 12:31:29', '2');
 INSERT INTO `notices` VALUES ('1615178062006105218', '1577713712942250291', '您已成功购买 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 请随时查看物流信息。', '1', '系统通知', '2021-03-08 12:34:22', '2');
-INSERT INTO `notices` VALUES ('1615178062009857148', '1582184795951594874', '您的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-08 12:34:22', '2');
+INSERT INTO `notices` VALUES ('1615178062009857148', '1582184795951594874', '您的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-08 12:34:22', '2');
 INSERT INTO `notices` VALUES ('1615178094277609121', '1577713712942250291', '您购买的 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已经发货， 请注意查看物流信息。', '1', '系统通知', '2021-03-08 12:34:54', '2');
-INSERT INTO `notices` VALUES ('1615178107237738372', '1582184795951594874', '您售出的商品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已经被收货啦。', '1', '系统通知', '2021-03-08 12:35:07', '2');
+INSERT INTO `notices` VALUES ('1615178107237738372', '1582184795951594874', '您售出的产品 <a href=/product-detail/1583940546885846474 style=\"color:#08bf91\" target=\"_blank\" >爱玛电动车 小爱蜜</a> 已经被收货啦。', '1', '系统通知', '2021-03-08 12:35:07', '2');
 INSERT INTO `notices` VALUES ('1615179956850611706', '1577713712942250291', '您已成功购买 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 请随时查看物流信息。', '1', '系统通知', '2021-03-08 13:05:56', '2');
-INSERT INTO `notices` VALUES ('1615179956854925172', '1582184795951594874', '您的商品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-08 13:05:56', '2');
+INSERT INTO `notices` VALUES ('1615179956854925172', '1582184795951594874', '您的产品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 被购买了，请及时发货。', '1', '系统通知', '2021-03-08 13:05:56', '2');
 INSERT INTO `notices` VALUES ('1615180008662850682', '1577713712942250291', '您购买的 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 已经发货， 请注意查看物流信息。', '1', '系统通知', '2021-03-08 13:06:48', '2');
-INSERT INTO `notices` VALUES ('1615180025853175908', '1582184795951594874', '您售出的商品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 已经被收货啦。', '1', '系统通知', '2021-03-08 13:07:05', '2');
+INSERT INTO `notices` VALUES ('1615180025853175908', '1582184795951594874', '您售出的产品 <a href=/product-detail/1583937436355876950 style=\"color:#08bf91\" target=\"_blank\" >活着</a> 已经被收货啦。', '1', '系统通知', '2021-03-08 13:07:05', '2');
 INSERT INTO `notices` VALUES ('1615180892435706850', '1582184795951594874', '您已成功购买 <a href=/product-detail/1583935211397204485 style=\"color:#08bf91\" target=\"_blank\" >基于Python的大数据分析基础及实战</a> 请随时查看物流信息。', '1', '系统通知', '2021-03-08 13:21:32', '2');
-INSERT INTO `notices` VALUES ('1615180892437792395', '1577713712942250291', '您的商品 <a href=/product-detail/1583935211397204485 style=\"color:#08bf91\" target=\"_blank\" >基于Python的大数据分析基础及实战</a> 被购买了，请及时发货。', '0', '系统通知', '2021-03-08 13:21:32', '2');
+INSERT INTO `notices` VALUES ('1615180892437792395', '1577713712942250291', '您的产品 <a href=/product-detail/1583935211397204485 style=\"color:#08bf91\" target=\"_blank\" >基于Python的大数据分析基础及实战</a> 被购买了，请及时发货。', '0', '系统通知', '2021-03-08 13:21:32', '2');
 
 -- ----------------------------
 -- Table structure for reply
@@ -486,9 +486,9 @@ DROP TABLE IF EXISTS `reply`;
 CREATE TABLE `reply` (
   `rid` varchar(64) NOT NULL COMMENT '回复id',
   `cid` varchar(64) NOT NULL COMMENT '评论id',
-  `commid` varchar(64) NOT NULL COMMENT '商品id',
+  `commid` varchar(64) NOT NULL COMMENT '产品id',
   `cuserid` varchar(64) NOT NULL COMMENT '被回复用户id',
-  `spuserid` varchar(64) DEFAULT NULL COMMENT '商品发布者id',
+  `spuserid` varchar(64) DEFAULT NULL COMMENT '产品发布者id',
   `recontent` varchar(255) DEFAULT NULL COMMENT '回复内容',
   `ruserid` varchar(64) NOT NULL COMMENT '回复者id',
   `replytime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '回复时间',
@@ -509,9 +509,9 @@ INSERT INTO `reply` VALUES ('1614226529645282498', '1614226508675446955', '15839
 DROP TABLE IF EXISTS `soldrecord`;
 CREATE TABLE `soldrecord` (
   `id` varchar(64) NOT NULL COMMENT '售出记录id',
-  `commid` varchar(64) NOT NULL COMMENT '商品id',
-  `commname` varchar(255) DEFAULT NULL COMMENT '商品名',
-  `commdesc` varchar(255) DEFAULT NULL COMMENT '商品描述',
+  `commid` varchar(64) NOT NULL COMMENT '产品id',
+  `commname` varchar(255) DEFAULT NULL COMMENT '产品名',
+  `commdesc` varchar(255) DEFAULT NULL COMMENT '产品描述',
   `thinkmoney` decimal(55,2) DEFAULT NULL COMMENT '售价',
   `soldtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '售出时间',
   `userid` varchar(64) NOT NULL COMMENT '用户id',

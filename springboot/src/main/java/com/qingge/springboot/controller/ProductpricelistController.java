@@ -3,6 +3,8 @@ package com.qingge.springboot.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qingge.springboot.common.Result;
+import com.qingge.springboot.entity.Product;
 import com.qingge.springboot.entity.Productpricelist;
 import com.qingge.springboot.mapper.ProductpricelistMapper;
 import com.qingge.springboot.service.ProductpricelistService;
@@ -30,6 +32,12 @@ public class ProductpricelistController {
     @Autowired
     private ProductpricelistService productpricelistService;
 
+    @GetMapping
+    public Result findAll() {
+        List< Productpricelist> list = productpricelistService.list();
+        return Result.success(list);
+    }
+
 
 
     @DeleteMapping("/{id}")
@@ -47,20 +55,17 @@ public class ProductpricelistController {
         @GetMapping("/page")
         public IPage<Productpricelist> findPage(@RequestParam Integer pageNum,
                                     @RequestParam Integer pageSize,
-                                    @RequestParam(defaultValue = "") String productpricelistname,
-                                    @RequestParam(defaultValue = "") String email,
-                                    @RequestParam(defaultValue = "") String address) {
+                                    @RequestParam(defaultValue = "") String pricelistname,
+                                    @RequestParam(defaultValue = "") String pricelisttype) {
             IPage<Productpricelist> page = new Page<>(pageNum, pageSize);
             QueryWrapper<Productpricelist> queryWrapper = new QueryWrapper<>();
-            if (!"".equals(productpricelistname)) {
-                queryWrapper.like("productpricelistname", productpricelistname);
+            if (!"".equals(pricelistname)) {
+                queryWrapper.like("pricelistname", pricelistname);
             }
-            if (!"".equals(email)) {
-                queryWrapper.like("email", email);
+            if (!"".equals(pricelisttype)) {
+                queryWrapper.like("pricelisttype", pricelisttype);
             }
-            if (!"".equals(address)) {
-                queryWrapper.like("address", address);
-            }
+           
             queryWrapper.orderByDesc("id");
 
             return productpricelistService.page(page, queryWrapper);

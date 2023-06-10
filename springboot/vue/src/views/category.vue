@@ -1,23 +1,18 @@
 <template>
   <div>
     <div style="padding: 5px 0">
-      <el-input style="width: 200px" placeholder="请输入名称" suffix-icon="el-icon-search" v-model="username"></el-input>
-      <el-input style="width: 200px" placeholder="请输入邮箱" suffix-icon="el-icon-message" class="ml-5" v-model="email"></el-input>
-      <el-input style="width: 200px" placeholder="请输入地址" suffix-icon="el-icon-position" class="ml-5" v-model="address"></el-input>
-      <el-select style="width: 200px" placeholder="请选择角色身份" suffix-icon="el-icon-user" clearable v-model="role"  >
-        <el-option v-for="item in roles" :key="item.name"  :value="item.flag"></el-option>
-      </el-select>
+      <el-input style="width: 200px" placeholder="请输入分类名称" suffix-icon="el-icon-search" v-model="name"></el-input>
+
 
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
-    </div>
 
-    <div style="margin: 10px 0">
       <el-button type="primary" @click="add">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
       <el-popconfirm
           class="ml-5"
           confirm-button-text='确定'
           cancel-button-text='我再想想'
+          cancel-button-type=""
           icon="el-icon-info"
           icon-color="red"
           title="您确定批量删除这些数据吗？"
@@ -26,11 +21,7 @@
         <el-button type="danger" slot="reference">批量删除 <i class="el-icon-remove-outline"></i></el-button>
       </el-popconfirm>
 
-      <el-upload :action="'http://' + serverIp + ':9090/user/import'" :show-file-list="false" accept="xlsx" :on-success="handleExcelImportSuccess" style="display: inline-block">
-        <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
-      </el-upload>
 
-      <el-button type="primary" @click="exp" class="ml-5">导出 <i class="el-icon-top"></i></el-button>
     </div>
 
 
@@ -119,6 +110,7 @@ export default {
       tableData: [],
       pageNum: 1,
       pageSize: 10,
+      name:"",
       entity: {},
       total: 0,
       dialogFormVisible: false
@@ -131,7 +123,7 @@ export default {
   },
   methods: {
     fileSuccessUpload(res) {
-      this.entity.file = "http://localhost:9090/YNFiles/" + res.data;
+      this.entity.file = "http://localhost:9090/static/file/" + res.data;
       this.fileList = [res.data]
       console.log(res)
     },
@@ -148,12 +140,17 @@ export default {
           params: {
             pageNum: this.pageNum,
             pageSize: this.pageSize,
-            name: this.text
+            name: this.name
+            //name: this.text
           }
        }).then(res => {
           this.tableData = res.data.records || []
           this.total = res.data.total
        })
+    },
+    reset() {
+      this.name = ""
+      this.load()
     },
     add() {
       this.entity = {}

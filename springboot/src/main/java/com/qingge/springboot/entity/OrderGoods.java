@@ -22,7 +22,7 @@ public class OrderGoods extends Model<OrderGoods> {
     private Long orderId;
 
     /**
-      * 商品id 
+      * 产品id 
       */
     private Long goodsId;
 

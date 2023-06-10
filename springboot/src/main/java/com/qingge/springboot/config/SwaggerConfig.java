@@ -20,7 +20,7 @@ public class SwaggerConfig {
      * 创建API应用
      * apiInfo() 增加API相关信息
      * 通过select()函数返回一个ApiSelectorBuilder实例,用来控制哪些接口暴露给Swagger来展现，
-     * 本例采用指定扫描的包路径来定义指定要建立API的目录。
+     * 采用指定扫描的包路径来定义指定要建立API的目录。
      *
      * @return
      */
@@ -38,15 +38,13 @@ public class SwaggerConfig {
     }
 
     /**
-     * 创建该API的基本信息（这些基本信息会展现在文档页面中）
-     * 访问地址：http://ip:port/swagger-ui.html
+     * 创建该API的基本信息
      *
-     * @return
      */
     private ApiInfo apiInfo(String title, String version) {
         return new ApiInfoBuilder()
                 .title(title)
-                .description("更多请关注: https://blog.csdn.net/xqnode")
+                .description(" https://blog.csdn.net/xqnode")
                 .termsOfServiceUrl("https://blog.csdn.net/xqnode")
                 .contact(new Contact("xqnode", "https://blog.csdn.net/xqnode", "xiaqingweb@163.com"))
                 .version(version)

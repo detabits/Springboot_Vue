@@ -1,11 +1,28 @@
 <template>
   <div class="wrapper">
-    <div style="margin: 100px auto; background-color: #fff; width: 350px; height: 400px; padding: 20px; border-radius: 10px">
+    <div style="margin: 100px auto; background-color: #fff; width: 350px; height: 600px; padding: 20px; border-radius: 10px">
       <div style="margin: 20px 0; text-align: center; font-size: 24px"><b>注 册</b></div>
       <el-form :model="user" :rules="rules" ref="userForm">
         <el-form-item prop="username">
           <el-input placeholder="请输入账号" size="medium" style="margin: 5px 0" prefix-icon="el-icon-user" v-model="user.username"></el-input>
         </el-form-item>
+
+        <el-form-item prop="nickname">
+          <el-input placeholder="请输入用户姓名" size="medium" style="margin: 5px 0" prefix-icon="el-icon-user" v-model="user.nickname"></el-input>
+        </el-form-item>
+
+        <el-form-item prop="email">
+          <el-input placeholder="请输入邮箱" size="medium" style="margin: 5px 0" prefix-icon="el-icon-message" v-model="user.email"></el-input>
+        </el-form-item>
+
+        <el-form-item prop="phone">
+          <el-input placeholder="请输入手机号码" size="medium" style="margin: 5px 0" prefix-icon="el-icon-notebook-2" v-model="user.phone"></el-input>
+        </el-form-item>
+
+        <el-form-item prop="address">
+          <el-input placeholder="请输入地址" size="medium" style="margin: 5px 0" prefix-icon="el-icon-position" v-model="user.address"></el-input>
+        </el-form-item>
+
         <el-form-item prop="password">
           <el-input placeholder="请输入密码" size="medium" style="margin: 5px 0" prefix-icon="el-icon-lock" show-password v-model="user.password"></el-input>
         </el-form-item>

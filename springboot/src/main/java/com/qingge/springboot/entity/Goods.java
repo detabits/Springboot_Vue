@@ -19,19 +19,28 @@ public class Goods extends Model<Goods> {
     private Long id;
 
     /**
-      * 商品名称 
+      * 产品名称 
       */
+
     private String name;
 
     /**
-      * 商品描述 
+      * 产品描述 
       */
     private String description;
 
     /**
-      * 商品编号 
+      * 产品编号 
       */
     private String no;
+
+
+    /**
+     * 价目表名称
+     */
+
+    private String pricelistname;
+
 
     /**
       * 原价 
@@ -68,7 +77,7 @@ public class Goods extends Model<Goods> {
     private String categoryName;
 
     /**
-      * 商品图片 
+      * 产品图片 
       */
     private String imgs;
 

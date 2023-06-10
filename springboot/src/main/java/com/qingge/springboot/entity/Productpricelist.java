@@ -16,9 +16,15 @@ public class Productpricelist {
     private String pricelistname;
     private String area;
     private String pricelisttype;
+    /**
+     * 折扣
+     */
+    private Double discount;
+    private String pricelistdescription;
     private String effectivedate;
     private String expirydate;
-    private String pricelistdescription;
+
+
 
 
 

@@ -1,20 +1,29 @@
 <template>
+
+
+
   <div>
     <div style="padding: 5px 0">
-      <el-input v-model="text" @keyup.enter.native="load" style="width: 200px"> <i slot="prefix" class="el-input__icon el-icon-search"></i></el-input>
+      <el-input style="width: 200px" placeholder="请输入产品名称" suffix-icon="el-icon-search" v-model="name"></el-input>
+      <el-input style="width: 200px" placeholder="请输入价目表名称" suffix-icon="el-icon-search" class="ml-5" v-model="pricelistname"></el-input>
+      <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
+      <el-button type="warning" @click="reset">重置</el-button>
+
+
       <el-button @click="add" type="primary" size="mini" style="margin: 10px">新增</el-button>
     </div>
     <el-table :data="tableData" border stripe style="width: 100%">
       <el-table-column prop="id" label="ID" width="100" sortable> </el-table-column>
-      <el-table-column prop="name" label="商品名称" width="150"></el-table-column>
+      <el-table-column prop="name" label="产品名称" width="150"></el-table-column>
       <el-table-column label="图片" width="200px">
         <template slot-scope="scope">
           <el-image style="width: 100px; height: 100px" :src="scope.row.imgs[0]" :preview-src-list="[scope.row.imgs[0]]"></el-image>
         </template>
       </el-table-column>
-      <el-table-column prop="categoryName" label="分类"></el-table-column>
-      <el-table-column prop="description" label="商品描述" width="300"></el-table-column>
-      <el-table-column prop="no" label="商品编号"></el-table-column>
+      <el-table-column prop="categoryName" label="展示分类"></el-table-column>
+      <el-table-column prop="description" label="产品描述" width="300"></el-table-column>
+      <el-table-column prop="no" label="产品编号"></el-table-column>
+      <el-table-column prop="pricelistname" width="90" label="价目表名称"></el-table-column>
       <el-table-column prop="price" label="原价"></el-table-column>
       <el-table-column prop="discount" label="折扣"></el-table-column>
       <el-table-column prop="store" label="库存"></el-table-column>
@@ -60,29 +69,28 @@
     <el-dialog title="信息" :visible.sync="dialogFormVisible" width="30%"
                :close-on-click-modal="false">
       <el-form :model="entity">
-        <el-form-item label="商品名称" label-width="150px">
-          <el-input v-model="entity.name" autocomplete="off" style="width: 80%"></el-input>
+        <el-form-item label="产品名称" label-width="150px">
+          <el-select v-model="entity.name" placeholder="请选择" style="width: 80%">
+            <el-option v-for="item in optionsJC" :key="item.id" :label="item.productname" :value="item.id"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="商品描述" label-width="150px">
-          <el-input type="textarea" v-model="entity.description" autocomplete="off" style="width: 80%"></el-input>
+
+        <el-form-item label="价目表名称" label-width="150px">
+          <el-select v-model="entity.pricelistname" placeholder="请选择" style="width: 80%">
+            <el-option v-for="item in optionsJMB" :key="item.id" :label="item.pricelistname" :value="item.id"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="商品编号" label-width="150px">
-          <el-input v-model="entity.no" autocomplete="off" style="width: 80%"></el-input>
-        </el-form-item>
-        <el-form-item label="原价" label-width="150px">
-          <el-input v-model="entity.price" autocomplete="off" style="width: 80%"></el-input>
-        </el-form-item>
-        <el-form-item label="折扣" label-width="150px">
-          <el-input v-model="entity.discount" autocomplete="off" style="width: 80%"></el-input>
-        </el-form-item>
-        <el-form-item label="库存" label-width="150px">
-          <el-input v-model="entity.store" autocomplete="off" style="width: 80%"></el-input>
-        </el-form-item>
-        <el-form-item label="分类" label-width="150px">
+
+        <el-form-item label="展示分类" label-width="150px">
           <el-select v-model="entity.categoryId" placeholder="请选择" style="width: 80%">
             <el-option v-for="item in options" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
         </el-form-item>
+
+        <el-form-item label="产品描述" label-width="150px">
+          <el-input type="textarea" v-model="entity.description" autocomplete="off" style="width: 80%"></el-input>
+        </el-form-item>
+
         <el-form-item label="是否推荐" label-width="150px">
           <el-switch
               v-model="entity.recommend"
@@ -91,7 +99,7 @@
           </el-switch>
         </el-form-item>
         <el-form-item label="图片" label-width="150px">
-          <el-upload action="http://localhost:9090/YNFiles/upload" multiple :on-success="handleSuccess" ref="upload">
+          <el-upload action="http://localhost:9090/static/file/upload" multiple :on-success="handleSuccess" ref="upload">
             <el-button size="small" type="primary">点击上传</el-button>
           </el-upload>
         </el-form-item>
@@ -114,6 +122,10 @@ export default {
   data() {
     return {
       fileList: [],
+
+      optionsJC: [],
+      optionsJMB: [],
+
       options: [],
       text: '',
       user: {},
@@ -122,7 +134,10 @@ export default {
       pageSize: 10,
       entity: {},
       total: 0,
-      dialogFormVisible: false
+      dialogFormVisible: false,
+
+      name: "",
+      pricelistname:""
     };
   },
   created() {
@@ -131,7 +146,7 @@ export default {
   },
   methods: {
     handleSuccess(res) {
-      let url = "http://localhost:9090/YNFiles/" + res.data
+      let url = "http://localhost:9090/static/file/" + res.data
       this.fileList.push(url)
     },
     handleSizeChange(pageSize) {
@@ -147,9 +162,11 @@ export default {
           params: {
             pageNum: this.pageNum,
             pageSize: this.pageSize,
-            name: this.text
+            name: this.name,
+            pricelistname: this.pricelistname,
           }
        }).then(res => {
+
           this.tableData = res.data.records || []
           this.total = res.data.total
 
@@ -165,6 +182,12 @@ export default {
 
       API.get("/api/category").then(res => {
         this.options = res.data
+      })
+      API.get("/product").then(res => {
+        this.optionsJC = res.data
+      })
+      API.get("/productpricelist").then(res => {
+        this.optionsJMB = res.data
       })
     },
     add() {
@@ -226,6 +249,12 @@ export default {
           this.dialogFormVisible = false
         })
       }
+    },
+    reset() {
+
+      this.name = ""
+      this.pricelistname = ""
+      this.load()
     },
     del(id) {
       API.delete(url + id).then(res => {

@@ -15,9 +15,10 @@ public class YNOrder {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+
     private String conditio;
 
-    private String type;
+    private String ordertype;
 
     private String customername;
 

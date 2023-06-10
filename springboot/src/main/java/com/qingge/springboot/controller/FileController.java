@@ -1,183 +1,104 @@
 package com.qingge.springboot.controller;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.SecureUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import com.qingge.springboot.common.Result;
-import com.qingge.springboot.entity.Files;
-import com.qingge.springboot.entity.User;
-import com.qingge.springboot.mapper.FileMapper;
-import org.springframework.beans.factory.annotation.Value;
+import com.qingge.springboot.dto.FileVO;
+import org.apache.commons.compress.utils.Lists;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-
-
-import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.List;
 
 /**
- * 文件上传相关接口
+ * @date 2021/3/17 10:16
+ * @description 文件上传
  */
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/static/file")
 public class FileController {
 
-    @Value("${files.upload.path}")
-    private String fileUploadPath;
-
-    @Resource
-    private FileMapper fileMapper;
-
-    @Value("${server.ip}")
-    private String serverIp;
     /**
-     * 文件上传接口
-     * @param file 前端传递过来的文件
+     * 单文件上传
+     * @param file
      * @return
-     * @throws IOException
      */
     @PostMapping("/upload")
-    public String upload(@RequestParam MultipartFile file) throws IOException{
-        String originalFilename = file.getOriginalFilename();
-        String type = FileUtil.extName(originalFilename);
-        long size = file.getSize();
-
-        // 定义一个文件唯一的标识码
-        String uuid = IdUtil.fastSimpleUUID();
-        String fileUUID = uuid + StrUtil.DOT + type;
-
-        File uploadFile = new File(fileUploadPath + fileUUID);
-        // 判断配置的文件目录是否存在，若不存在则创建一个新的文件目录
-        File parentFile = uploadFile.getParentFile();
-        if(!parentFile.exists()) {
-            parentFile.mkdirs();
+    public Result<String> upload(MultipartFile file) {
+        String filePath = System.getProperty("user.dir") + "/src/main/resources/static/file/";
+        String flag = System.currentTimeMillis() + "";
+        String fileName = file.getOriginalFilename();
+        try {
+            FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);
+            System.out.println(fileName + "--上传成功");
+            Thread.sleep(1L);
+        } catch (Exception e) {
+            System.err.println(fileName + "--文件上传失败");
         }
-
-        String url;
-        // 获取文件的md5
-        String md5 = SecureUtil.md5(file.getInputStream());
-        // 从数据库查询是否存在相同的记录
-        Files dbFiles = getFileByMd5(md5);
-        if (dbFiles != null) { // 文件已存在
-            url = dbFiles.getUrl();
-            dbFiles.setIsDelete(false);
-            fileMapper.updateById(dbFiles);
-
-        } else {
-            // 上传文件到磁盘
-            file.transferTo(uploadFile);
-            // 数据库若不存在重复文件，则不删除刚才上传的文件
-            //url = "http://localhost:9090/file/" + fileUUID;
-            url = "http://"+serverIp+":9090/file/"+ fileUUID;
-            // 存储数据库
-            Files saveFile = new Files();
-            saveFile.setName(originalFilename);
-            saveFile.setType(type);
-            saveFile.setSize(size/1024);
-            saveFile.setUrl(url);
-            saveFile.setMd5(md5);
-            fileMapper.insert(saveFile);
-        }
-
-
-
-        return url;
+        return Result.success(flag);
     }
 
     /**
-     * 文件下载接口   http://localhost:9090/file/{fileUUID}
-     * @param fileUUID
+     * 多文件上传
+     * @return
+     */
+    @PostMapping("/upload/multiple")
+    public List<FileVO> multipleUpload(MultipartFile[] files) {
+        String filePath = System.getProperty("user.dir") + "/src/main/resources/static/file/";
+        List<FileVO> fileVOS = Lists.newArrayList();
+        for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                continue;
+            }
+            String flag = System.currentTimeMillis() + "";
+            String fileName = file.getOriginalFilename();
+            FileVO fileVO = new FileVO();
+            fileVO.setUrl("http://localhost:9090/static/file/" + flag);
+            fileVO.setName(file.getOriginalFilename());
+            fileVOS.add(fileVO);
+            try {
+                FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);
+                System.out.println(fileName + "--上传成功");
+                Thread.sleep(1L);
+            } catch (Exception e) {
+                System.err.println(fileName + "--文件上传失败");
+            }
+
+        }
+        return fileVOS;
+    }
+
+    /**
+     * 获取文件
+     * @param flag
      * @param response
-     * @throws IOException
      */
-    @GetMapping("/{fileUUID}")
-    public void download(@PathVariable String fileUUID, HttpServletResponse response) throws IOException {
-        // 根据文件的唯一标识码获取文件
-        File uploadFile = new File(fileUploadPath + fileUUID);
-        // 设置输出流的格式
-        ServletOutputStream os = response.getOutputStream();
-        response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileUUID, "UTF-8"));
-        response.setContentType("application/octet-stream");
-
-        // 读取文件的字节流
-        os.write(FileUtil.readBytes(uploadFile));
-        os.flush();
-        os.close();
-    }
-
-
-    /**
-     * 通过文件的md5查询文件
-     * @param md5
-     * @return
-     */
-    private Files getFileByMd5(String md5) {
-        // 查询文件的md5是否存在
-        QueryWrapper<Files> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("md5", md5);
-        List<Files> filesList = fileMapper.selectList(queryWrapper);
-        return filesList.size() == 0 ? null : filesList.get(0);
-    }
-
-
-    @PostMapping("/update")
-    public Result update(@RequestBody Files files) {
-        return Result.success(fileMapper.updateById(files));
-    }
-
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Integer id) {
-        Files files = fileMapper.selectById(id);
-        files.setIsDelete(true);
-        fileMapper.updateById(files);
-
-        return Result.success();
-    }
-
-    @PostMapping("/del/batch")
-    public Result deleteBatch(@RequestBody List<Integer> ids) {
-        // select * from sys_file where id in (id,id,id...)
-        QueryWrapper<Files> queryWrapper = new QueryWrapper<>();
-        queryWrapper.in("id", ids);
-        List<Files> files = fileMapper.selectList(queryWrapper);
-        for (Files file : files) {
-            file.setIsDelete(true);
-            fileMapper.updateById(file);
+    @GetMapping("/{flag}")
+    public void avatarPath(@PathVariable String flag, HttpServletResponse response) {
+        OutputStream os;
+        String basePath = System.getProperty("user.dir") + "/src/main/resources/static/file/";
+        List<String> fileNames = FileUtil.listFileNames(basePath);
+        String avatar = fileNames.stream().filter(name -> name.contains(flag)).findAny().orElse("");
+        try {
+            if (StrUtil.isNotEmpty(avatar)) {
+                response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(avatar, "UTF-8"));
+                response.setContentType("application/octet-stream");
+                byte[] bytes = FileUtil.readBytes(basePath + avatar);
+                os = response.getOutputStream();
+                os.write(bytes);
+                os.flush();
+                os.close();
+            }
+        } catch (Exception e) {
+            System.out.println("文件下载失败");
         }
-        return Result.success();
     }
-
-    /**
-     * 分页查询接口
-     * @param pageNum
-     * @param pageSize
-     * @param name
-     * @return
-     */
-    @GetMapping("/page")
-    public Result findPage(@RequestParam Integer pageNum,
-                           @RequestParam Integer pageSize,
-                           @RequestParam(defaultValue = "") String name) {
-
-        QueryWrapper<Files> queryWrapper = new QueryWrapper<>();
-        // 查询未删除的记录
-        queryWrapper.eq("is_delete", false);
-        queryWrapper.orderByDesc("id");
-        if (!"".equals(name)) {
-            queryWrapper.like("name", name);
-        }
-        return Result.success(fileMapper.selectPage(new Page<>(pageNum, pageSize), queryWrapper));
-    }
-
 
 }

@@ -2,7 +2,7 @@
   <div>
 
     <div style="margin-top: 10px">
-      <!--      商品-->
+      <!--      产品-->
       <el-row :gutter="10">
         <!--    图片-->
         <el-col :span="8">
@@ -20,7 +20,7 @@
           </el-card>
         </el-col>
 
-        <!--    商品细节-->
+        <!--    产品细节-->
         <el-col :span="16">
           <el-card>
             <div style="text-align: right">
@@ -56,7 +56,7 @@
             <div style="padding: 10px 0; color: #999;">
               <span>服务</span>
               <span style="margin-left: 20px; color: #666">
-                由“电商平台”发货，并提供售后服务。 23:55前完成下单，预计明天可送达
+                平台发货，并提供售后服务。 23:55前完成下单，预计明天可送达
               </span>
             </div>
 
@@ -225,7 +225,7 @@ export default {
       if ((this.goods.store - this.num) < 0) {
         this.$message({
           type: 'warning',
-          message: '商品库存不足！'
+          message: '产品库存不足！'
         })
         return
       }
@@ -298,7 +298,7 @@ export default {
       if ((this.goods.store - this.num) < 0) {
         this.$message({
           type: 'warning',
-          message: '商品库存不足！'
+          message: '产品库存不足！'
         })
         return
       }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface GoodsMapper extends BaseMapper<Goods> {
 
-    IPage<Goods> findPage(Page<Goods> page,  @Param("name") String name);
+    IPage<Goods> findPage(Page<Goods> page,  @Param("name") String name, @Param("pricelistname") String pricelistname);
 
     @Select("select * from goods where category_id = #{id}")
     IPage<Goods> pageByCategory(Page<Goods> page, @Param("id") Long id);

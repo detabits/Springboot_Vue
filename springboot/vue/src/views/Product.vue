@@ -2,24 +2,24 @@
 <template>
   <div>
     <div style="margin: 10px 0">
-      <el-input style="width: 200px" placeholder="请输入名称" suffix-icon="el-icon-search" v-model="productname"></el-input>
-      <el-input style="width: 200px" placeholder="请输入邮箱" suffix-icon="el-icon-message" class="ml-5" v-model="email"></el-input>
-      <el-input style="width: 200px" placeholder="请输入地址" suffix-icon="el-icon-position" class="ml-5" v-model="address"></el-input>
+      <el-input style="width: 200px" placeholder="请输入产品名称" suffix-icon="el-icon-search" v-model="productname"></el-input>
+      <el-input style="width: 200px" placeholder="请输入产品编码" suffix-icon="el-icon-search" class="ml-5" v-model="productcode"></el-input>
 
       <el-select style="width: 200px" placeholder="请选择产品分类" suffix-icon="el-icon-user" clearable v-model="productclassification"  >
-        <el-option v-for="item in productclassifications" :key="item.categoryname"  :value="item.categoryname"></el-option>
+        <el-option v-for="item in options" :key="item.name" :label="item.name" :value="item.name"></el-option>
       </el-select>
+
+
 
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
-    </div>
 
-    <div style="margin: 10px 0">
       <el-button type="primary" @click="handleAdd">新增 <i class="el-icon-circle-plus-outline"></i></el-button>
       <el-popconfirm
           class="ml-5"
           confirm-button-text='确定'
           cancel-button-text='我再想想'
+          cancel-button-type=""
           icon="el-icon-info"
           icon-color="red"
           title="您确定批量删除这些数据吗？"
@@ -27,24 +27,21 @@
       >
         <el-button type="danger" slot="reference">批量删除 <i class="el-icon-remove-outline"></i></el-button>
       </el-popconfirm>
-      <el-upload action="http://localhost:9090/product/import" :show-file-list="false" accept="xlsx" :on-success="handleExcelImportSuccess" style="display: inline-block">
-        <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
-      </el-upload>
 
-      <el-button type="primary" @click="exp" class="ml-5">导出 <i class="el-icon-top"></i></el-button>
     </div>
 
     <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'"  @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="id" label="产品编码" width="80"></el-table-column>
+      <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>
       <el-table-column prop="productname" label="产品名称" width="80"></el-table-column>
       <el-table-column prop="productabbreviation" label="产品简称" width="80"></el-table-column>
-      <el-table-column prop="area" label="提货厂区" width="80"></el-table-column>
+      <el-table-column prop="productcode" label="产品编码" width="80"></el-table-column>
       <el-table-column prop="productclassification" label="产品分类" width="80"></el-table-column>
-      <el-table-column prop="isstock" label="是否有库存" width="80"></el-table-column>
-      <el-table-column prop="isdisplayed" label="是否外部显示" width="80"></el-table-column>
+      <el-table-column prop="area" label="提货厂区" width="80"></el-table-column>
+      <el-table-column prop="store" label="库存" width="80"></el-table-column>
       <el-table-column prop="unit" label="单位" width="80"></el-table-column>
-      <el-table-column prop="orderofproducts" label="产品排列顺序" width="80"></el-table-column>
+      <el-table-column prop="isdisplayed" label="是否外部显示" width="80"></el-table-column>
+      <el-table-column prop="price" label="原价" width="80"></el-table-column>
       <el-table-column prop="effectivedate" label="生效日期" width="80"></el-table-column>
       <el-table-column prop="expirydate" label="失效日期" width="80"></el-table-column>
 
@@ -59,6 +56,7 @@
               class="ml-5"
               confirm-button-text='确定'
               cancel-button-text='我再想想'
+          cancel-button-type=""
               icon="el-icon-info"
               icon-color="red"
               title="您确定删除吗？"
@@ -83,7 +81,7 @@
 
     <el-dialog title="产品信息" :visible.sync="dialogFormVisible" width="30%" >
       <el-form label-width="80px" size="small">
-        <el-form-item label="产品编码">
+        <el-form-item label="ID">
           <el-input v-model="form.id" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="产品名称">
@@ -92,27 +90,32 @@
         <el-form-item label="产品简称">
           <el-input v-model="form.productabbreviation" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="提货厂区">
-          <el-input v-model="form.area" autocomplete="off"></el-input>
+        <el-form-item label="产品编码">
+          <el-input v-model="form.productcode" autocomplete="off"></el-input>
         </el-form-item>
-
         <el-form-item label="产品分类">
-          <el-select clearable v-model="form.productclassification" placeholder="请选择角色" style="width: 100%">
-            <el-option v-for="item in productclassifications" :key="item.categoryname" :label="item.categoryname" :value="item.categoryname"></el-option>
+          <el-select clearable v-model="form.productclassification" placeholder="请选择产品分类" style="width: 100%">
+            <el-option v-for="item in options" :key="item.name" :label="item.name" :value="item.name"></el-option>
           </el-select>
         </el-form-item>
 
-        <el-form-item label="是否有库存">
-          <el-input v-model="form.isstock" autocomplete="off"></el-input>
+        <el-form-item label="提货厂区" >
+          <el-select v-model="form.area" placeholder="请选择" style="width: 100%">
+            <el-option v-for="item in optionsTH" :key="item.id" :label="item.itemid" :value="item.itemname"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="是否外部显示">
-          <el-input v-model="form.isdisplayed" autocomplete="off"></el-input>
+
+        <el-form-item label="库存">
+          <el-input v-model="form.store" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="单位">
           <el-input v-model="form.unit" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="产品排列顺序">
-          <el-input v-model="form.orderofproducts" autocomplete="off"></el-input>
+        <el-form-item label="是否外部显示">
+          <el-input v-model="form.isdisplayed" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="原价">
+          <el-input v-model="form.price" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="生效日期">
           <el-input v-model="form.effectivedate" autocomplete="off"></el-input>
@@ -135,6 +138,8 @@
 
 
 
+import API from "@/utils/request";
+
 export default {
   name: "Product",
   data() {
@@ -144,13 +149,13 @@ export default {
       pageNum: 1,
       pageSize: 2,
       productname: "",
-      email: "",
-      address: "",
+      productcode: "",
+      productclassification:"",
       form: {},
       dialogFormVisible: false,
       multipleSelection: [],
-      productclassifications:[],
-      productclassification:"",
+      options:[],
+      optionsTH: [],
     }
   },
 
@@ -167,8 +172,7 @@ export default {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
           productname: this.productname,
-          email: this.email,
-          address: this.address,
+          productcode: this.productcode,
           productclassification:this.productclassification,
         }
       }).then(res => {
@@ -176,9 +180,13 @@ export default {
         this.tableData = res.records
         this.total = res.total
       })
-      this.request.get("/productclassification").then(res => {
-        this.productclassifications = res.data
+      this.request.get("/api/category").then(res => {
 
+        this.options = res.data
+
+      })
+      API.get("/code").then(res => {
+        this.optionsTH = res.data
       })
     },
     save() {
@@ -227,8 +235,8 @@ export default {
     },
     reset() {
       this.productname = ""
-      this.email = ""
-      this.address = ""
+      this.productcode = ""
+      this.productclassification = ""
       this.load()
     },
     handleSizeChange(pageSize) {

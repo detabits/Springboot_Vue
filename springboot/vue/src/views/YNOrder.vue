@@ -15,6 +15,7 @@
           class="ml-5"
           confirm-button-text='确定'
           cancel-button-text='我再想想'
+          cancel-button-type=""
           icon="el-icon-info"
           icon-color="red"
           title="您确定批量删除这些数据吗？"
@@ -35,7 +36,7 @@
 
       <el-table-column prop="conditio" label="状态" width="120"></el-table-column>
 
-      <el-table-column prop="type" label="订单类型" width="120"></el-table-column>
+      <el-table-column prop="ordertype" label="订单类型" width="120"></el-table-column>
 
       <el-table-column prop="customername" label="客户名称" width="120"></el-table-column>
 
@@ -63,6 +64,7 @@
               class="ml-5"
               confirm-button-text='确定'
               cancel-button-text='我再想想'
+          cancel-button-type=""
               icon="el-icon-info"
               icon-color="red"
               title="您确定删除吗？"
@@ -94,7 +96,7 @@
           <el-input v-model="form.conditio" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="订单类型">
-          <el-input v-model="form.type" autocomplete="off"></el-input>
+          <el-input v-model="form.ordertype" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="客户名称">
           <el-input v-model="form.customername" autocomplete="off"></el-input>

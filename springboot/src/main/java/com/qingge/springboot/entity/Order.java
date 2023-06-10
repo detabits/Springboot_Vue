@@ -64,4 +64,17 @@ public class Order extends Model<Order> {
     @TableField(exist = false)
     private Integer type;
 
+    private String ordertype;     //订单类型
+    private String customername;  //客户名称
+    private String salesman;      //业务员
+    private String source;        //订单来源
+    private String delivery;      //提货方式
+
+    private String submission;    //提交日期
+    private String deadline;      //提交截至日期
+    private String productname;   //产品名称
+    private Integer quantity;      //数量
+    private String unit;        //提货单位
+    private String area;        //提货厂区
+    private String notes;       //备注
 }
